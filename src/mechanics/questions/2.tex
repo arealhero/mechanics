@@ -1,0 +1,159 @@
+\section{Аффинные координаты и преобразования}
+
+\subsection{Аффинные и декартовы системы координат}
+
+Пусть $E = \mathbb{E}^n$, тогда вектор $\vv{OM} \in \vec{E} = \mathbb{R}^n$
+можно разложить по базису $(\vec{e}_1, \dots, \vec{e}_n)$ векторного
+пространства $\mathbb{R}^n$:
+\begin{equation}
+  \label{eq:vec_coords}
+  \vv{OM} = \sum_{j=1}^n x_j \vec{e}_j,
+\end{equation}
+или, в другой записи:
+\begin{equation}
+  \label{eq:vec_coords_alt}
+  M = O + \sum_{j=1}^n x_j \vec{e}_j.
+\end{equation}
+
+Пусть $O \in \mathbb{E}^n$, а $(\vec{e}_1, \dots, \vec{e}_n)$ --- базис
+пространства $\mathbb{R}^n$.
+\begin{definition}
+  Упорядоченную последовательность $(O, \vec{e}_1, \dots, \vec{e}_n)$ называют
+  \textit{репером} пространства $\mathbb{E}^n$; точку $O$ называют
+  \textit{началом} этого репера, а базис $(\vec{e}_1, \dots, \vec{e}_n)$ ---
+  его \textit{базисом}.
+\end{definition}
+
+\begin{definition}
+  Вещественные числа $x_1, \dots, x_n$ в \ref{eq:vec_coords_alt} называют
+  \textit{аффинными координатами} точки $M \in \mathbb{E}^n$ относительно
+  выбранного репера с началом $O \in \mathbb{E}^n$ и базисом
+  $(\vec{e}_1, \dots, \vec{e}_n)$.
+\end{definition}
+
+\begin{definition}
+  \textit{Ориентацией репера} называют ориентацию базиса соответствующего
+  векторного пространства.
+\end{definition}
+
+% TODO: связь между репером, базисом и системой координат
+\textcolor{red}{TODO:} связь между репером, базисом и системой координат.
+
+\begin{definition}
+  Аффинную систему координат, оси которой взаимно ортогональны, называют
+  \textit{декартовой}.
+\end{definition}
+
+Пусть $(O, \vec{e}_1, \dots, \vec{e}_n)$ --- репер в пространстве
+$\mathbb{E}^n$, и пусть даны представления точек $M,N \in \mathbb{E}^n$:
+
+\begin{equation}
+  \begin{aligned}
+    M &= O + \sum_{j=1}^n x_j \vec{e}_j, \\
+    N &= O + \sum_{j=1}^n y_j \vec{e}_j.
+  \end{aligned}
+\end{equation}
+
+Тогда
+
+\begin{equation}
+  \begin{aligned}
+    \vv{MN} &= \vv{MO} + \vv{ON} \\
+    &= \vv{ON} - \vv{OM} \\
+    &= \sum_{j=1}^n (y_j - x_j) \vec{e}_j.
+  \end{aligned}
+\end{equation}
+
+\subsection{Аффинные преобразования}
+
+Пусть
+\begin{equation}
+  M = O + \sum_{j=1}^n x_j \vec{e}_j = O_1 + \sum_{j=1}^n \tilde{x}_j \vec{e}_j,
+\end{equation}
+где
+\begin{equation}
+  O_1 = O + \sum_{j=1}^n a_j \vec{e}_j.
+\end{equation}
+Тогда
+\begin{equation*}
+  O + \sum_{j=1}^n x_j \vec{e}_j = O + \sum_{j=1}^n a_j \vec{e}_j +
+    \sum_{j=1}^n \tilde{x}_j \vec{e}_j,
+\end{equation*}
+откуда следует, что
+\begin{equation}
+  x_j = \tilde{x}_j + a_j, \quad j \in [1:n].
+\end{equation}
+
+Рассмотрим два ортонормальных базиса $(\pvec{e}_1, \dots, \pvec{e}_n)$ и
+$(\ppvec{e}_1, \dots,  \ppvec{e}_n)$ пространства $\mathbb{R}^n$. Как
+известно, они связаны равенствами:
+\begin{equation}
+  \label{eq:basis_transform}
+  \ppvec{e}_i = \sum_{j=1}^n p_{ij} \pvec{e}_j, \quad j \in [1:n].
+\end{equation}
+
+\begin{theorem}
+  Матрица $P = (p_{ij})$ в \autoref{eq:basis_transform} ортогональна.
+\end{theorem}
+
+\begin{proof}
+  Любое преобразование базисов вида \ref{eq:basis_transform} должно сохранять
+  длины векторов, то есть
+  \begin{equation*}
+    \dotprod{\vec{x}}{\vec{x}} = \dotprod{P \vec{x}}{P \vec{x}} \quad \forall
+      \vec{x} \in \mathbb{R}^n .
+  \end{equation*}
+  Так как
+  \begin{equation*}
+    \dotprod{P \vec{x}}{P \vec{x}} = \dotprod{\vec{x}}{P^T P \vec{x}},
+  \end{equation*}
+  а $P^T P$ --- симметричная матрица, то $P^T P = I$, что и является условием
+  ортогональности.
+\end{proof}
+
+Из ортогональности матрицы $P$ следует, что
+\begin{equation*}
+  1 = \det I = \det (P^T P) = \det P^T \det P = (\det P)^2,
+\end{equation*}
+откуда $\det P = \pm 1$. Если элементы матрицы $P$ непрерывно зависят от
+каких-то параметров, то и $\det P$ также непрерывно зависит от них. Отсюда
+следует, что при изменении этих параметров величина $\det P$ не меняется.
+
+Выразим теперь связь между координатами точки в различных реперах. Пусть
+$\pvec{x} = (x_1', \dots, x_n')$ и $\ppvec{x} = (x_1'', \dots, x_n'')$ ---
+разложения вектора $\vec{x}$ по базисам $(\pvec{e}_1, \dots, \pvec{e}_n)$ и
+$(\ppvec{e}_1, \dots, \ppvec{e}_n)$ соответственно, тогда
+\begin{equation*}
+  \ppvec{x} = P \pvec{x}, \quad \pvec{x} = P^T \ppvec{x}.
+\end{equation*}
+Пусть теперь
+\begin{equation*}
+  M = O + \sum_{j=1}^n x_j' \pvec{e}_j = O_1 + \sum_{j=1}^n x_j'' \ppvec{e}_j,
+\end{equation*}
+где
+\begin{equation*}
+  O_1 = O + \sum_{j=1}^n a_j \pvec{e}_j.
+\end{equation*}
+Тогда из равенств
+\begin{equation*}
+  \begin{aligned}
+    O + \sum_{j=1}^n x_j' \pvec{e}_j &= O + \sum_{j=1}^n a_j \pvec{e}_j +
+      \sum_{i=1}^n x_i'' \ppvec{e}_i \\
+    &= O + \sum_{j=1}^n a_j \pvec{e}_j +
+      \sum_{j=1}^n \pvec{e}_j \sum_{i=1}^n p_{ij} x_i''
+  \end{aligned}
+\end{equation*}
+следует, что
+\begin{equation}
+  x_j' = a_j + \sum_{i=1}^n p_{ij} x_i'', \quad j \in [1:n].
+\end{equation}
+Аналогично
+\begin{equation}
+  x_j'' = \sum_{i=1}^n p_{ji} (x_i' - a_i), \quad j \in [1:n].
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+

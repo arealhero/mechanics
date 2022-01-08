@@ -1,0 +1,91 @@
+\section{Локальные базисы криволинейных координат}
+
+Криволинейные координаты обозначим $\vec{q} = (q_1, q_2, q_3) \in
+Q = \{ \vec{q} \, | \, \vec{q} = \vec{q}(\vec{r}), \vec{r} \in D \}$.
+
+\subsection{Определение}
+
+% TODO: инфа из учебника
+\textcolor{red}{TODO:} инфа из учебника
+
+\begin{definition}
+  Пусть $\vec{q}_0 = (q_{10}, q_{20}, q_{30}) \in Q,~\vec{r}_0 =
+  \vec{r}(\vec{q}_0) = (x_0, y_0, z_0)$, тогда множества
+  \begin{equation}
+    (q_{i0}) = \{ (x,y,z) \in D \, | \, q_i(x,y,z) = q_{i0} \}, \quad i = 1,2,3
+  \end{equation}
+  называют \textit{координатными поверхностями} криволинейной системы координат
+  $\vec{q} = (q_1, q_2, q_3)$ в точке $(q_{10}, q_{20}, q_{30})$, а множества
+  \begin{equation}
+    \begin{aligned}
+      \tilde{q}_1 &= (q_{20}) \cap (q_{30}) \\
+      \tilde{q}_2 &= (q_{10}) \cap (q_{30}) \\
+      \tilde{q}_3 &= (q_{10}) \cap (q_{20})
+    \end{aligned}
+  \end{equation}
+  --- её \textit{координатными линиями} в этой точке.
+\end{definition}
+
+\begin{remark}
+  $(q_{10}) \cap (q_{20}) \cap (q_{30}) = \{ (x_0, y_0, z_0) \}$.
+\end{remark}
+
+По определению, якобиан криволинейной системы координат отличен от нуля в
+каждой точке области определения $Q$. Векторы
+$\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+составляют строки матрицы этого якобиана и поэтому не могут быть нулевыми.
+
+\begin{theorem}
+  Векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+  являются касательными соответственно к линиям
+  $\tilde{q}_1,~\tilde{q}_2,~\tilde{q}_3$ в точке $\vec{q}_0$.
+\end{theorem}
+
+\begin{proof}
+  Для наглядности рассмотрим координатную кривую $\tilde{q}_1$. Эта кривая
+  параметризуется переменной $q_i$ в точке $\vec{q}_0$. Положим
+  $\vec{r} = \vec{r}(q_1, q_{20}, q_{30})$, тогда производая
+  $\parder[\vec{r}]{q_1}$ даст направление касательной к этой кривой в точке
+  $\vec{q}_0$.
+\end{proof}
+
+\begin{definition}
+  Совокупность векторов $(\vec{\tau}_1, \vec{\tau}_2, \vec{\tau}_3)$,
+  определяемых формулой
+  \begin{equation*}
+    \vec{\tau}_i = \frac{\parder[\vec{r}]{q_i}}{\abs{\parder[\vec{r}]{q_i}}},
+      \quad i = 1,2,3
+  \end{equation*}
+  называют \textit{локальным базисом} криволинейной системы координат в точке
+  $\vec{q}_0$.
+\end{definition}
+
+\begin{definition}
+  Если векторы $\vec{\tau}_1,~\vec{\tau}_2,~\vec{\tau}_3$ взаимно ортогональны
+  в точке $\vec{q}_0$, то криволинейная система координат называется
+  \textit{ортогональной} в этой точке.
+\end{definition}
+
+\subsection{Условие ортогональности}
+
+Так как векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},
+~\parder[\vec{r}]{q_3}$ ненулевые, то условия ортогональности локального базиса
+\begin{equation*}
+  \dotprod{\vec{\tau}_i}{\vec{\tau}_j} = 0, \quad i,j = 1,2,3,~i \neq j
+\end{equation*}
+эквивалентны равенствам
+\begin{equation*}
+  \dotprod{\parder[\vec{r}]{q_i}}{\parder[\vec{r}]{q_j}} = 0,
+    \quad i,j = 1,2,3,~i \neq j
+\end{equation*}
+или, в координатной форме,
+\begin{equation}
+  \parder[x]{q_i} \parder[x]{q_j} + \parder[y]{q_i} \parder[y]{q_j} +
+    \parder[z]{q_i} \parder[z]{q_j} = 0, \quad i,j = 1,2,3,~i \neq j.
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+

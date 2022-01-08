@@ -1,0 +1,96 @@
+\section{Аффинные евклидовы пространства}
+
+\subsection{Аффинные пространства}
+
+\begin{definition}
+  \textit{Аффинным пространством} называют множество $E$, связанное с векторным
+  пространством $\vec{E}$ отображением $f: E \times E \to \vec{E}$ со
+  свойствами:
+  \begin{enumerate}
+    \item\label{prop:first} $(\forall a,b,c \in E)~\left(\vv{ab} + \vv{bc} +
+      \vv{ca} = \vec{0} \in \vec{E}\right)$ (\textit{Соотношение Шаля});
+    \item\label{prop:second} $(\forall a \in E)~\left(x \mapsto \vv{ax}
+      \text{ --- биекция на } \vec{E}\right)$
+  \end{enumerate}
+  Элементы множества $E$ называют \textit{точками} аффинного пространства, а
+  элементы множества $\vec{E}$ --- \textit{свободными векторами}.
+\end{definition}
+
+Из свойств \ref{prop:first},\ref{prop:second} можно получить следствия:
+\begin{enumerate}
+    \setcounter{enumi}{2}
+  \item $(\forall a \in E)~\left(\vv{aa} = \vec{0}\right)$;
+  \item $(\forall a,b \in E)~\left(\vv{ab} + \vv{ba} = \vec{0}\right)$
+    (иначе: $\vv{ab} = -\vv{ba}$);
+  \item $(\forall a \in E)~(\forall \vec{h} \in \vec{E})~(\exists! b \in E)
+    \quad \left(\vv{ab} = \vec{h}\right)$
+
+    (вместо $\vv{ab} = \vec{h}$ пишут символически: $b = a + \vec{h}$);
+
+  \item $(\forall a \in E)~(\forall \vec{h},\vec{k} \in \vec{E}) \quad
+    \left(a + (\vec{h} + \vec{k}) = (a + \vec{h}) + \vec{k} \right)$.
+\end{enumerate}
+
+Наряду со свободными векторами векторного пространства $\vec{E}$ в аффинном
+пространстве вводят
+\begin{definition}
+  Если $a$ --- точка аффинного пространства $E$, а $\vec{h}$ --- вектор
+  связанного с ним векторного пространства $\vec{E}$, то пару $(a, \vec{h})$
+  называют \textit{вектором $\vec{h}$, закреплённым в точке $a$}.
+
+  Каждому закреплённому вектору $(a, \vec{h})$ соответствует упорядоченная пара
+  точек $(a, a + \vec{h})$, и каждой упорядоченной паре точек $(a, b)$
+  соответствует закреплённый вектор $(a, \vv{ab})$, поэтому закреплённым
+  вектором называют также упорядоченную пару точек аффинного пространства.
+\end{definition}
+
+\begin{definition}
+  \textit{Прямой, проходящей через точки $A$ и $B~(A \neq B)$} аффинного
+  пространства $E$, называют множество точек
+  \begin{equation*}
+    l(A,B) = \left\{ M \in E \, | \, M = A + t \cdot \vv{AB},~t \in \mathbb{R}
+    \right\}.
+  \end{equation*}
+  Множество $l(A,B)$ можно считать упорядоченным, полагая, что точка $B_1 = A +
+  t_1 \cdot \vv{AB}$ предшествует точке $B_2 = A + t_2 \cdot \vv{AB}$ тогда и
+  только тогда, когда $t_1 < t_2$. В этом случае прямую $l(A,B)$ будем считать
+  \textit{направленной}, или \textit{сонаправленной с вектором $\vv{AB}$}.
+\end{definition}
+
+\begin{definition}
+  \textit{Размерностью} аффинного пространства $E$ называют размерность
+  связанного с ним векторного пространства $\vec{E}$.
+\end{definition}
+
+\subsection{Аффинные евклидовы пространства}
+
+\begin{definition}
+  Аффинное пространство $E$ называется \textit{евклидовым аффинным
+  пространством}, если связанное с ним векторное пространство $\vec{E}$
+  евклидово, то есть на $\vec{E}$ задано
+  \begin{enumerate}
+    \item скалярное произведение векторов $\vec{p}, \vec{h} \in \vec{E}$;
+      обозначается как $\dotprod{\wvec{p}}{\vec{h}},~(\vec{p},\vec{h})$ или
+      $\left\langle \vec{p},\vec{h} \right\rangle$;
+    \item евклидова норма вектора $\vec{p} \in \vec{E}$; вводится по формуле
+      $\norm{\wvec{p}} = \sqrt{\wvec{p}\vec{p}}$;
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Аффинное евклидово пространство $E$ называется \textit{метрическим}, если
+  введено отображение $\rho : E \times E \to \mathbb{R}$ такое, что
+  \begin{equation*}
+    \forall x,y \in E \quad \rho(x,y) = \norm{\vv{yx}}.
+  \end{equation*}
+  В этом случае отображение $\rho$ называют \textit{евклидовым расстоянием}.
+\end{definition}
+
+Если $\vec{E}$ --- векторное или евклидово пространство $\mathbb{R}^n$, то
+вместо $E$ используют обозначение $\mathbb{E}^n$.
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+

@@ -1,0 +1,84 @@
+\section{Проекции ускорения точки на оси ортогональной криволинейной системы
+координат}
+
+Для определения проекций ускорения представим их в виде
+\begin{equation*}
+  w_{q_m} = \dotprod{\vec{w}}{\vec{\tau}_m} =
+    \dotprod{\dot{\vec{v}}}{\frac{1}{H_m}}{\parder[\vec{r}]{q_m}},
+\end{equation*}
+откуда
+\begin{equation}
+  \label{eq:accel_proj_temp}
+  H_m w_{q_m} = \dotprod{\dot{\vec{v}}}{\parder[\vec{r}]{q_m}} =
+    \dt \paren{\dotprod{\vec{v}}{\parder[\vec{r}]{q_m}}}
+    - \dotprod{\vec{v}}{\dt \parder[\vec{r}]{q_m}}.
+\end{equation}
+Из \autoref{eq:velocity_def} непосредственно следует
+\begin{equation}
+  \label{eq:accel_dr}
+  \parder[\vec{v}]{\dot{q}_m} = \parder[\vec{r}]{q_m}.
+\end{equation}
+Кроме того, по определению полной производной
+\begin{equation*}
+  \dt \parder[\vec{r}]{q_m} = \pparder[\vec{r}]{q_1}{q_m} \dot{q}_1 +
+    \pparder[\vec{r}]{q_2}{q_m} \dot{q}_2 +
+    \pparder[\vec{r}]{q_3}{q_m} \dot{q}_3;
+\end{equation*}
+но это же выражение получим, если возьмём от обеих частей
+\autoref{eq:velocity_def} частную производную по $q_m$. Действительно, так как
+$\dot{q}_1,~\dot{q}_2,~\dot{q}_3$ зависят только от времени, а не от
+$q_1,~q_2,~q_3$, то
+\begin{equation*}
+  \parder[\vec{v}]{q_m} = \pparder[\vec{r}]{q_m}{q_1} \dot{q}_1 +
+    \pparder[\vec{r}]{q_m}{q_2} \dot{q}_2 + \pparder[\vec{r}]{q_m}{q_3}
+    \dot{q}_3;
+\end{equation*}
+таким образом, имеем
+\begin{equation}
+  \label{eq:accel_dv}
+  \dt \parder[\vec{r}]{q_m} = \parder[\vec{v}]{q_m}.
+\end{equation}
+Подставляя значения $\parder[\vec{r}]{q_m}$ по \autoref{eq:accel_dr} и
+$\dt \parder[\vec{r}]{q_m}$ по \autoref{eq:accel_dv} в равенство
+\ref{eq:accel_proj_temp}, получим
+\begin{equation}
+  \label{eq:accel_proj_temp2}
+  H_m w_{q_m} = \dt \paren{\dotprod{\vec{v}}{\parder[\vec{v}]{\dot{q}_m}}} -
+    \dotprod{\vec{v}}{\parder[\vec{v}]{q_m}}.
+\end{equation}
+Замечая, что
+\begin{equation*}
+  \begin{gathered}
+    \dotprod{\vec{v}}{\parder[\vec{v}]{\dot{q}_m}} =
+      \parder{\dot{q}_m} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+      \parder{\dot{q}_m} \frac{v^2}{2}, \\
+    \dotprod{\vec{v}}{\parder[\vec{v}]{q_m}} =
+      \parder{q_m} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+      \parder{q_m} \frac{v^2}{2},
+  \end{gathered}
+\end{equation*}
+на основании \autoref{eq:accel_proj_temp2} получим выражение проекций ускорения
+на оси криволинейной системы координат:
+\begin{equation}
+  w_{q_m} = \frac{1}{H_m} \paren{\dt \parder[T]{\dot{q}_m} - \parder[T]{q_m}},
+\end{equation}
+где для краткости введено обозначение
+\begin{equation}
+  T = \frac{1}{2} v^2.
+\end{equation}
+Используя линейный дифференциальный оператор Эйлера-Лагранжа, определяемый
+формулой
+\begin{equation}
+  E_{q_m}(T) = \dt \parder[T]{\dot{q}_m} - \parder[T]{q_m},
+\end{equation}
+окончательно получаем
+\begin{equation}
+  \label{eq:accel_proj}
+  w_{q_m} = \frac{1}{H_{q_m}} E_{q_m}(T).
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+

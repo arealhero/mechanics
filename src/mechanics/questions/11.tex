@@ -1,0 +1,218 @@
+\section{Группа движений аффинного евклидова пространства}
+
+\subsection{Предварительные сведения}
+
+\begin{definition}
+  \textit{Законом композиции на множестве $X$} называют отображение
+  \begin{equation*}
+    * : X \times X \to X.
+  \end{equation*}
+  Вместо $*(a,b)$ пишут $a * b$.
+\end{definition}
+
+\begin{definition}
+  Пусть $*$ --- закон композиции на $X$. Тогда пару $(X, *)$ называют
+  \textit{алгебраической структурой}.
+\end{definition}
+
+\begin{definition}
+  Пусть $*$ --- закон композиции на $X$. Если
+  \begin{equation*}
+    \forall a,b,c \in X \quad a * (b * c) = (a * b) * c,
+  \end{equation*}
+  то закон композиции $*$ называется \textit{ассоциативным}.
+\end{definition}
+
+\begin{definition}
+  Алгебраическая структура $(X, *)$ называется \textit{полугруппой}, если закон
+  композиции $*$ ассоциативен.
+\end{definition}
+
+\begin{definition}
+  Элемент $e \in X$ называется \textit{единичным} или \textit{нейтральным}
+  относительно закона композиции $*$, если
+  \begin{equation*}
+    \forall x \in X \quad e * x = x * e = x.
+  \end{equation*}
+\end{definition}
+
+\begin{remark}
+  В алгебраической структуре $(X, *)$ не может быть более одного единичного
+  элемента.
+\end{remark}
+
+\begin{definition}
+  Полугруппу с единицей называют \textit{моноидом}.
+\end{definition}
+
+\begin{definition}
+  Элемент $a$ моноида $(X, *, e)$ называют \textit{обратимым}, если
+  \begin{equation*}
+    \exists b \in X: \quad a * b = b * a = e.
+  \end{equation*}
+  Для элемента $b$ используют обозначение $a^{-1}$.
+\end{definition}
+
+\begin{definition}
+  Моноид, все элементы которого обратимы, называют \textit{группой}.
+\end{definition}
+
+\begin{definition}
+  Закон композиции $*$ называют \textit{коммутативным}, если
+  \begin{equation*}
+    \forall a,b \in X \quad a * b = b * a.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Группу с коммутативным законом композиции называют \textit{абелевой}
+  (\textit{коммутативной}) группой.
+\end{definition}
+
+\begin{definition}
+  Подмножество $H$ группы $G$ называется \textit{подгруппой группы $G$}, если:
+  \begin{enumerate}
+    \item $H$ содержит единичный элемент из $G$:
+      \begin{equation*}
+        \quad e \in H;
+      \end{equation*}
+    \item $H$ содержит композицию любых двух элементов из $H$:
+      \begin{equation*}
+        \forall a,b \in H \quad a * b \in H;
+      \end{equation*}
+    \item $H$ содержит вместе со всяких своим элементом $h$ обратный к нему
+      элемент $h^{-1}$:
+      \begin{equation*}
+        \forall h \in H \quad h^{-1} \in H.
+      \end{equation*}
+  \end{enumerate}
+\end{definition}
+
+Пусть $s(\Omega)$ --- множество всех биективных отображений $f : \Omega \to
+\Omega$. Введём закон композиции $* : s(\Omega) \times s(\Omega) \to s(\Omega)$
+такой, что
+\begin{equation*}
+  \forall \varphi, \psi \in s(\Omega) \quad \varphi * \psi = \varphi \circ \psi;
+\end{equation*}
+тогда $(s(\Omega), *)$ --- группа, причём её единицей является тождественное
+отображение $\id_\Omega: \Omega \to \Omega$ такое, что
+\begin{equation*}
+  \forall x \in \Omega \quad \id_\Omega(x) = x.
+\end{equation*}
+
+\subsection{Группа движений твёрдого тела}
+
+% TODO
+(\textcolor{red}{TODO:} Дальше может быть путаница в терминах. Короче, надо
+понять, что в его понимании такое "перемещение", но вот как я это понимаю.
+Рассмотрим некоторое движение твёрдого тела $\mathcal{DM} = \{ D_\tau : J \to
+\mathbb{E}^3 \}_{\tau \in T}$. Функция $D_\tau$ задаёт перемещение точки
+$M_\tau$ твёрдого тела. У нас есть формула, по которому мы можем найти
+коэффициенты $x_j^\tau(t)$, то есть перемещению точки соответствует биекция
+$D : \mathbb{E}^3 \to \mathbb{E}^3$, задающаяся этой формулой. В этом случае
+получается, что каждому движению твёрдого тела соответствует множество таких
+биекций. Если это всё верно, то надо аккуратно переписать всё в верных
+терминах.)
+
+Рассмотрим движение $\mathcal{DM} = \{ D_\tau : J \to \mathbb{E}^3 \}_{\tau \in
+T}$ механической системы в $\mathbb{E}^3$.
+
+Пусть $(O, \vec{e}_1, \vec{e}_2, \vec{e}_3)$ --- некоторый фиксированный репер в
+$\mathbb{E}^3$ и пусть
+\begin{equation}
+  \label{eq:coords_in_immovable_frame}
+  M_\tau = D_\tau(t) = O + \sum_{j=1}^{3} x_j^\tau(t) \vec{e}_j, \quad
+    \tau \in T.
+\end{equation}
+
+Так как свободное твёрдое тело (твёрдое тело на классе всех движений в
+$\mathbb{E}^3$) имеет 6 степеней свободы, то функции $x_j^\tau(t)$ могут быть
+выражены через какие-то 6 скалярных функций $q_1, \dots, q_6$.
+
+етыре точки $M_0, M_1, M_2, M_3$ твёрдого тела выберем так, чтобы векторы
+$\vv{M_0 M_1}, \vv{M_0 M_2}, \vv{M_0 M_3}$ образовывали ортонормированный базис
+$(\vec{i}_1, \vec{i}_2, \vec{i}_3)$ пространства $\mathbb{R}^3$. Тогда каждая
+точка $M_\tau$ твёрдого тела определяется своими аффинными координатами в репере
+$(M_0, \vec{i}_1, \vec{i}_2, \vec{i}_3)$:
+\begin{equation}
+  \label{eq:coords_in_movable_frame}
+  M_\tau = M_0 + \sum_{j=1}^{3} y_j^\tau \vec{i}_j,
+\end{equation}
+причём координаты $y_j^\tau$ не зависят от времени.
+
+Векторы $\vec{i}_1, \vec{i}_2, \vec{i}_3$, построенные по движущимся точкам
+$M_0, M_1, M_2, M_3$, являются функциями времени:
+\begin{equation*}
+  \vec{i}_j = \vec{i}_j(t), \quad j = 1,2,3.
+\end{equation*}
+
+Ортонормированные базисы $(\vec{e}_1, \vec{e}_2, \vec{e}_3)$ и $(\vec{i}_1(t),
+\vec{i}_2(t), \vec{i}_3(t))$ пространства $\mathbb{R}^3$ связаны равенствами
+\begin{equation}
+  \vec{i}_k = \sum_{j=1}^{3} p_{kj}(t) \vec{e}_j, \quad k = 1,2,3,
+\end{equation}
+где матрица $P(t) = (p_{kj}(t))$ ортогональна.
+
+Если $D_{M_0}$ --- движение точки $M_0$ и
+\begin{equation*}
+  D_{M_0}(t) = O + \sum_{j=1}^{3} a_j(t) \vec{e}_j,
+\end{equation*}
+то
+\begin{equation}
+  \label{eq:free_motion_point_coords}
+  x_j^\tau(t) = a_j(t) + \sum_{k=1}^{3} p_{kj}(t) y_k^\tau, \quad j = 1,2,3.
+\end{equation}
+
+Элементы $p_{kj}$ ортогональной матрицы $P$ могут быть выражены через углы
+Эйлера $\varphi, \psi, \theta$, поэтому формулы
+\ref{eq:free_motion_point_coords} дают искомое представление для функций
+$x_j^\tau$ через шесть функций $a_1(t), a_2(t), a_3(t), \varphi(t), \psi(t),
+\theta(t)$. Это значит, что всякому перемещению соответствует биективное
+отображение $D : \mathbb{E}^3 \to \mathbb{E}^3$, определяемое формулами
+\ref{eq:free_motion_point_coords}.
+
+Задавая всевозможные движения (то есть функции $a_1, a_2, a_3, \varphi, \psi,
+\theta$) и фиксируя всевозможные моменты времени $t \in J$, мы будем получать те
+или иные перемещения твёрдого тела за время от $t_0$ до $t$ и соответствующие
+ему биекции $D : \mathbb{E}^3 \to \mathbb{E}^3$.
+
+\begin{theorem}
+  Семейство $D_3$ всех таких биекций является подгруппой группы
+  $s(\mathbb{E}^3)$.
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} указания на странице 44 конспекта)
+\end{proof}
+
+\begin{definition}
+  Семейство $D_3$ называют \textit{группой движений} в $\mathbb{E}^3$.
+\end{definition}
+
+\subsection{Подгруппы движений}
+
+\begin{definition}
+  Если матрица $P(t)$ не зависит от времени, то движение твёрдого тела называют
+  \textit{поступательным}.
+\end{definition}
+
+Каждому перемещению твёрдого тела за время от $t_0$ до $t$ в некотором
+поступательном движении соответствует некоторое множество биекций
+$D : \mathbb{E}^3 \to \mathbb{E}^3$, определяемых формулами:
+\begin{equation*}
+  x_j^\tau(t) = a_j(t) + \sum_{k=1}^{3} p_{kj}^0 y_k^\tau, \quad j = 1,2,3,
+\end{equation*}
+где $P(t_0) = P^0 = (p_{kj}^0)$.
+
+% Обозначим множество всевозможных таких биекций 
+
+\begin{theorem}
+  Множество $D_3^{\text{(п)}}$ всех таких биекций
+\end{theorem}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+

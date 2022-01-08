@@ -1,0 +1,42 @@
+\section{Определение кривизны траектории точки по движению}
+
+\subsection{Кинематический метод}
+
+Если известны модули скорости $v = v(t)$ и ускорения $w = w(t)$ движения точки,
+то кривизну траектории можно найти по формулам:
+\begin{equation}
+  \begin{gathered}
+    w_\tau = \dot{v}, \quad w_n = \sqrt{w^2 - w_\tau^2}, \\
+    K = \frac{w_n}{v^2}, \quad \rho = \frac{1}{K}.
+  \end{gathered}
+\end{equation}
+
+Если движение точки задано тройкой скалярных функций $x(t),~y(t),~z(t)$, то
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{(\dot{x}(t))^2 + (\dot{y}(t))^2 + (\dot{z}(t))^2}, \\
+    w = \sqrt{(\ddot{x}(t))^2 + (\ddot{y}(t))^2 + (\ddot{z}(t))^2}. \\
+  \end{gathered}
+\end{equation}
+
+% TODO: можно ли здесь употреблять слово "ортогональных"?
+Если же движение точки задано тройкой ортогональных криволинейных координат
+--- скалярных функций $q_1(t),~q_2(t),~q_3(t)$, то проекции скорости и
+ускорения точки выразятся как
+\begin{equation*}
+  v_{q_m} = H_{q_m} \dot{q}_m, \quad w_{q_m} = \frac{1}{H_{q_m}} E_{q_m} (T),
+    \quad m = 1,2,3.
+\end{equation*}
+Тогда
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{(v_{q_1}(t))^2 + (v_{q_2}(t))^2 + (v_{q_3}(t))^2}, \\
+    w = \sqrt{(w_{q_1}(t))^2 + (w_{q_2}(t))^2 + (w_{q_3}(t))^2}. \\
+  \end{gathered}
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+

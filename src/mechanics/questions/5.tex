@@ -1,0 +1,124 @@
+\section{Коэффициенты Ламе. Проекции скорости точки на оси криволинейной
+системы координат}
+
+\subsection{Общие сведения}
+
+В качестве пространства будем использовать аффинное евклидово пространство
+$\mathbb{E}^n$.
+
+\begin{definition}
+  \textit{Положением механической системы в момент $t_0$} будем называть точку
+  $M^0 \in \mathbb{E}^n$.
+\end{definition}
+
+\begin{definition}
+  Пусть $J$ --- промежуток на $\mathbb{R}$. \textit{Движением} механической
+  системы будем называть дважды непрерывно дифференцируемую функцию $D : J \to
+  \mathbb{E}^n$ времени $t$ такую, что $D(t_0) = M^0$.
+\end{definition}
+
+\begin{definition}
+  Предположим, что точка этого пространства может быть задана радиус-вектором
+  $\vec{r}$ в какой-либо декартовой системе координат, то есть движение этой
+  точки представлено вектор-функцией $\vec{r} : J \to \mathbb{R}^n$. В этом
+  случае \textit{скоростью} и \textit{ускорением} точки в этом движении
+  называют соответственно вектор-функции $\vec{v} = \dot{\vec{r}}$ и
+  $\vec{v} = \ddot{\vec{r}}$, а \textit{траекторией} точки называют кривую
+  $\{ \vec{r}(t) \in \mathbb{R}^n \, | \, t \in J \}$.
+\end{definition}
+
+% TODO | FIXME: кривая представлена в виде { r \in R | t \in J }. Необходимо
+%   перенести условие из левой части задания множества в правую,
+%   т.е. избавиться от r \in R слева.
+
+\subsection{Коэффициенты Ламе}
+
+Так как
+\begin{equation}
+  \parder[\vec{r}]{q_m} = \parder[x]{q_m} \vec{i} + \parder[y]{q_m} \vec{j} +
+  \parder[z]{q_m} \vec{k},
+\end{equation}
+то, введя обозначение
+\begin{equation}
+  H_m = \abs{\parder[\vec{r}]{q_m}} = \sqrt{\paren{\parder[x]{q_m}}^2 +
+  \paren{\parder[y]{q_m}}^2 + \paren{\parder[z]{q_m}}^2},
+\end{equation}
+векторы локального базиса можно представить в виде
+\begin{equation}
+  \label{eq:local_basis_vec}
+  \vec{\tau}_m = \frac{1}{H_m} \parder[\vec{r}]{q_m},
+\end{equation}
+или, иначе:
+\begin{equation}
+  \label{eq:local_basis_vec_alt}
+  \parder[\vec{r}]{q_m} = H_m \vec{\tau}_m.
+\end{equation}
+
+\begin{definition}
+  Величины $H_m$ (иногда удобнее обозначение $H_{q_m}$) называют
+  \textit{коэффициентами Ламе}.
+\end{definition}
+
+Выразим направляющие косинусы осей локального базиса криволинейной системы
+координат $\vec{q}$ относительно осей декартовой системы координат:
+\begin{equation}
+  \cos\angle (\vec{\tau}_m, \vec{i}) = \dotprod{\vec{\tau}_m}{\vec{i}} =
+    \frac{1}{H_m} \parder[x]{q_m}, \quad \dots, \quad m = 1,2,3.
+\end{equation}
+
+\begin{definition}
+  \textit{Движением точки в криволинейных координатах $\vec{q}$} называют
+  дважды непрерывно дифференцируемую на промежутке $J \subset \mathbb{R}$
+  вектор-функцию $\vec{q}(t)$.
+\end{definition}
+
+\begin{definition}
+  Функции $\dot{\vec{q}}$ и $\ddot{\vec{q}}$ называют соответственно
+  \textit{обобщённой скоростью} и \textit{обобщённым ускорением точки в
+  движении $\vec{q}(t)$}.
+\end{definition}
+
+\begin{definition}
+  Кривую
+  \begin{equation*}
+    \Gamma = \{ \vec{q}(t) \in \mathbb{R}^3 \, | \, t \in J \}
+  \end{equation*}
+  называют \textit{траекторией точки в криволинейных координатах}.
+\end{definition}
+
+\subsection{Проекции скорости точки на оси криволинейной системы координат}
+
+Напишем вектор скорости в виде
+\begin{equation}
+  \label{eq:velocity_def}
+  \vec{v} = \dot{\vec{r}} = \parder[\vec{r}]{q_1} \dot{q_1} +
+  \parder[\vec{r}]{q_2} \dot{q_2} + \parder[\vec{r}]{q_3} \dot{q_3},
+\end{equation}
+тогда по формулам \ref{eq:local_basis_vec_alt} получим
+\begin{equation*}
+  \vec{v} = H_1 \dot{q}_1 \vec{\tau}_1 + H_2 \dot{q}_2 \vec{\tau}_2 + H_3
+  \dot{q}_3 \vec{\tau}_3.
+\end{equation*}
+Это равенство можно рассматривать как разложение вектора скорости по единичным
+векторам осей криволинейных координат; для проекций скорости на координатные
+оси будем иметь
+\begin{equation}
+  \label{eq:velocity_proj}
+  v_{q_m} = H_{q_m} \dot{q}_m \quad (m = 1,2,3).
+\end{equation}
+
+Если криволинейная система ортогональна, то
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{\paren{H_1 \dot{q_1}}^2 + \paren{H_2 \dot{q_2}}^2 + \paren{H_3
+      \dot{q_3}}^2}, \\
+    \cos\angle (\vec{v}, \vec{\tau}_m) = H_m \dot{q}_m v^{-1}, \quad m = 1,2,3.
+  \end{gathered}
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+  \item \cite{lourie}
+\end{enumerate}
+

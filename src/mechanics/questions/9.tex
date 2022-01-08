@@ -1,0 +1,165 @@
+\section{Движение точки по прямой и по окружности}
+
+\subsection{Прямолинейное движение}
+
+\begin{definition}
+  \textit{Прямолинейное движение} --- движение точки, траектория которой лежит
+  на прямой.
+\end{definition}
+
+Начало системы $Oxyz$ поместим на этой прямой, а ось $x$ направим вдоль неё.
+Тогда получим уравнение траектории:
+\begin{equation*}
+  y = 0, \quad z = 0,
+\end{equation*}
+тогда
+\begin{equation*}
+  \begin{gathered}
+    v^2 = (\dot{x}(t))^2, \\
+    w^2 = (\ddot{x}(t))^2 \\
+  \end{gathered}
+\end{equation*}
+и, как следствие,
+\begin{equation*}
+  \begin{gathered}
+    w_\tau^2 = (\dot{v})^2 = (\ddot{x})^2, \quad
+      w_n = \sqrt{w^2 - w_\tau^2} = 0, \\
+    K = 0, \quad \rho = +\infty.
+  \end{gathered}
+\end{equation*}
+
+\begin{definition}
+  Прямолинейное движение называют \textit{равномерным}, если $v(t) = v_0$,
+  где $v_0$ --- постоянная.
+
+  Уравнение движения:
+  \begin{equation*}
+    x(t) = x_0 + v_0 (t - t_0), \quad x(t_0) = x_0.
+  \end{equation*}
+
+  Естественная координата:
+  \begin{equation*}
+    s = \abs{v_0 (t - t_0)}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Прямолинейное движение называют \textit{равнопеременным}, если $w(t) = w_0$,
+  где $w_0$ --- постоянная.
+
+  Уравнение движения:
+  \begin{equation*}
+    \begin{gathered}
+      x(t) = x_0 + v_0 (t - t_0) + \frac{w_0}{2} (t - t_0)^2, \\
+      x(t_0) = x_0, \quad \dot{x}(t_0) = v(t_0) = v_0.
+    \end{gathered}
+  \end{equation*}
+
+  Естественная координата:
+  \begin{equation*}
+    s = \abs{v_0 (t - t_0) + \frac{w_0}{2} (t - t_0)^2}.
+  \end{equation*}
+\end{definition}
+
+\subsection{Движение по окружности}
+
+\begin{definition}
+  \textit{Углом поворота между векторами} называется вектор
+  \begin{equation*}
+    \angle (\vec{a}, \vec{b}) = \left\{
+      \begin{array}{l l}
+        (\arccos(\vec{a}, \vec{b})) \cdot
+        \frac{\crossprod{\vec{a}}{\vec{b}}}
+        {\abs{\crossprod{\vec{a}}{\vec{b}}}}, &
+        \vec{a} \nparallel \vec{b}; \\
+
+        \vec{0}, & \vec{a} \parallel \vec{b}.
+      \end{array}
+      \right.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  \textit{Углом между векторами $\vec{a}$ и $\vec{b}$} называется величина
+  \begin{equation*}
+    \abs{\angle (\vec{a}, \vec{b})} = \arccos(\vec{a}, \vec{b}).
+  \end{equation*}
+\end{definition}
+
+Когда говорят об угле между векторами $\vec{a}$ и $\vec{b}$, отсчитываемом от
+$\vec{a}$ к $\vec{b}$, то имеют в виду угол поворота $\angle(\vec{a}, \vec{b})$.
+
+\begin{definition}
+  \textit{Движением по окружности} называют любое движение точки, траектория
+  которого лежит на окружности.
+\end{definition}
+
+В случае движения по окружности угол смежности $\varepsilon$ равен центральному
+углу между радиусами, проведёнными в точки касания, а соответствующая дуга
+равна произведению этого угла на радиус $R$, то есть
+\begin{equation*}
+  \Delta \sigma = \varepsilon R, \implies
+    \frac{\varepsilon}{\Delta \sigma} = \frac{1}{R},
+\end{equation*}
+поэтому
+\begin{equation*}
+  K = \lim_{\Delta \sigma \to 0} \frac{\varepsilon}{\Delta \sigma} =
+    \frac{1}{R}, \quad \rho = R.
+\end{equation*}
+
+% TODO
+(\textcolor{red}{TODO:} решить, куда поместить определения угловой скорости и
+ускорения, а также скалярные и векторные формулы скорости и ускорнения точек)
+
+\begin{definition}
+  Движение по окружности называют \textit{равномерным вращением}, если
+  $\omega(t) = \omega_0$, где $\omega_0$ --- постоянная.
+
+  В этом случае
+  \begin{equation*}
+    \varphi(t) = \varphi_0 + \omega_0 (t - t_0), \quad \varphi(t_0) = \varphi_0.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Движение по окружности называют \textit{равнопеременным вращением}, если
+  $\varepsilon = \varepsilon_0$, где $\varepsilon_0$ --- постоянная.
+
+  В этом случае
+  \begin{equation*}
+    \begin{gathered}
+      \varphi(t) = \varphi_0 + \omega_0 (t - t_0) +
+        \frac{\varepsilon_0}{2} (t - t_0)^2, \\
+      \varphi(t_0) = \varphi_0, \quad
+        \dot{\varphi(t_0)} = \omega(t_0) = \omega_0.
+    \end{gathered}
+  \end{equation*}
+\end{definition}
+
+Рассмотрим частные случаи движения по окружности:
+\begin{enumerate}
+  \item Если тело вращается равномерно, то $\varepsilon(t) = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = R \omega_0^2.
+    \end{equation*}
+
+  \item Если в некоторый момент времени угловая скорость $\omega$ тела достигает
+    максимального или минимального значения, то
+    $\dot{\omega} = \varepsilon = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = R \omega_0^2.
+    \end{equation*}
+
+  \item Если в некоторый момент угол поворота достигает максимального или
+    минимального значения, то $\dot{\varphi} = \omega = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = 0.
+    \end{equation*}
+\end{enumerate}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+  \item \cite{lourie}
+\end{enumerate}
+
