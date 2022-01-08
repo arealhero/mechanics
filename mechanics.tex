@@ -1,0 +1,2042 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+% biber recommends this
+\usepackage{csquotes}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{xcolor}
+\usepackage{enumerate}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue}
+
+\usepackage{tikz}
+\usetikzlibrary {3d}
+
+\usepackage{float}
+\usepackage{caption}
+
+\usepackage[backend=biber,citestyle=authortitle]{biblatex}
+\addbibresource{mech.bib}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}[section]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{corollary}{Следствие}[theorem]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Замечание}[section]
+
+\numberwithin{equation}{section}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+
+\newcommand{\vv}[1]{\overrightarrow{#1}}
+
+\newcommand{\wvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
+\newcommand{\pvec}[1]{\wvec{#1}'}
+\newcommand{\ppvec}[1]{\wvec{#1}''}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\paren}[1]{\left( #1 \right)}
+
+\newcommand{\dotprod}[2]{#1 \cdot #2}
+\newcommand{\crossprod}[2]{#1 \times #2}
+
+\newcommand{\der}[2][]{\frac{d #1}{d #2}}
+\newcommand{\sder}[2][]{\frac{d^2 #1}{d #2^2}}
+\newcommand{\deltader}[2]{\frac{\Delta #1}{\Delta #2}}
+\newcommand{\parder}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pparder}[3][]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+
+\newcommand{\dt}[1][]{\der[#1]{t}}
+\newcommand{\ddt}[1][]{\sder[#1]{t}}
+
+\DeclareMathOperator{\id}{id}
+
+\title{Билеты по теоретической механике}
+\author{В.~Шаршуков}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+\tableofcontents
+\pagebreak
+
+
+\section{Аффинные евклидовы пространства}
+
+\subsection{Аффинные пространства}
+
+\begin{definition}
+  \textit{Аффинным пространством} называют множество $E$, связанное с векторным
+  пространством $\vec{E}$ отображением $f: E \times E \to \vec{E}$ со
+  свойствами:
+  \begin{enumerate}
+    \item\label{prop:first} $(\forall a,b,c \in E)~\left(\vv{ab} + \vv{bc} +
+      \vv{ca} = \vec{0} \in \vec{E}\right)$ (\textit{Соотношение Шаля});
+    \item\label{prop:second} $(\forall a \in E)~\left(x \mapsto \vv{ax}
+      \text{ --- биекция на } \vec{E}\right)$
+  \end{enumerate}
+  Элементы множества $E$ называют \textit{точками} аффинного пространства, а
+  элементы множества $\vec{E}$ --- \textit{свободными векторами}.
+\end{definition}
+
+Из свойств \ref{prop:first},\ref{prop:second} можно получить следствия:
+\begin{enumerate}
+    \setcounter{enumi}{2}
+  \item $(\forall a \in E)~\left(\vv{aa} = \vec{0}\right)$;
+  \item $(\forall a,b \in E)~\left(\vv{ab} + \vv{ba} = \vec{0}\right)$
+    (иначе: $\vv{ab} = -\vv{ba}$);
+  \item $(\forall a \in E)~(\forall \vec{h} \in \vec{E})~(\exists! b \in E)
+    \quad \left(\vv{ab} = \vec{h}\right)$
+
+    (вместо $\vv{ab} = \vec{h}$ пишут символически: $b = a + \vec{h}$);
+
+  \item $(\forall a \in E)~(\forall \vec{h},\vec{k} \in \vec{E}) \quad
+    \left(a + (\vec{h} + \vec{k}) = (a + \vec{h}) + \vec{k} \right)$.
+\end{enumerate}
+
+Наряду со свободными векторами векторного пространства $\vec{E}$ в аффинном
+пространстве вводят
+\begin{definition}
+  Если $a$ --- точка аффинного пространства $E$, а $\vec{h}$ --- вектор
+  связанного с ним векторного пространства $\vec{E}$, то пару $(a, \vec{h})$
+  называют \textit{вектором $\vec{h}$, закреплённым в точке $a$}.
+
+  Каждому закреплённому вектору $(a, \vec{h})$ соответствует упорядоченная пара
+  точек $(a, a + \vec{h})$, и каждой упорядоченной паре точек $(a, b)$
+  соответствует закреплённый вектор $(a, \vv{ab})$, поэтому закреплённым
+  вектором называют также упорядоченную пару точек аффинного пространства.
+\end{definition}
+
+\begin{definition}
+  \textit{Прямой, проходящей через точки $A$ и $B~(A \neq B)$} аффинного
+  пространства $E$, называют множество точек
+  \begin{equation*}
+    l(A,B) = \left\{ M \in E \, | \, M = A + t \cdot \vv{AB},~t \in \mathbb{R}
+    \right\}.
+  \end{equation*}
+  Множество $l(A,B)$ можно считать упорядоченным, полагая, что точка $B_1 = A +
+  t_1 \cdot \vv{AB}$ предшествует точке $B_2 = A + t_2 \cdot \vv{AB}$ тогда и
+  только тогда, когда $t_1 < t_2$. В этом случае прямую $l(A,B)$ будем считать
+  \textit{направленной}, или \textit{сонаправленной с вектором $\vv{AB}$}.
+\end{definition}
+
+\begin{definition}
+  \textit{Размерностью} аффинного пространства $E$ называют размерность
+  связанного с ним векторного пространства $\vec{E}$.
+\end{definition}
+
+\subsection{Аффинные евклидовы пространства}
+
+\begin{definition}
+  Аффинное пространство $E$ называется \textit{евклидовым аффинным
+  пространством}, если связанное с ним векторное пространство $\vec{E}$
+  евклидово, то есть на $\vec{E}$ задано
+  \begin{enumerate}
+    \item скалярное произведение векторов $\vec{p}, \vec{h} \in \vec{E}$;
+      обозначается как $\dotprod{\wvec{p}}{\vec{h}},~(\vec{p},\vec{h})$ или
+      $\left\langle \vec{p},\vec{h} \right\rangle$;
+    \item евклидова норма вектора $\vec{p} \in \vec{E}$; вводится по формуле
+      $\norm{\wvec{p}} = \sqrt{\wvec{p}\vec{p}}$;
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Аффинное евклидово пространство $E$ называется \textit{метрическим}, если
+  введено отображение $\rho : E \times E \to \mathbb{R}$ такое, что
+  \begin{equation*}
+    \forall x,y \in E \quad \rho(x,y) = \norm{\vv{yx}}.
+  \end{equation*}
+  В этом случае отображение $\rho$ называют \textit{евклидовым расстоянием}.
+\end{definition}
+
+Если $\vec{E}$ --- векторное или евклидово пространство $\mathbb{R}^n$, то
+вместо $E$ используют обозначение $\mathbb{E}^n$.
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Аффинные координаты и преобразования}
+
+\subsection{Аффинные и декартовы системы координат}
+
+Пусть $E = \mathbb{E}^n$, тогда вектор $\vv{OM} \in \vec{E} = \mathbb{R}^n$
+можно разложить по базису $(\vec{e}_1, \dots, \vec{e}_n)$ векторного
+пространства $\mathbb{R}^n$:
+\begin{equation}
+  \label{eq:vec_coords}
+  \vv{OM} = \sum_{j=1}^n x_j \vec{e}_j,
+\end{equation}
+или, в другой записи:
+\begin{equation}
+  \label{eq:vec_coords_alt}
+  M = O + \sum_{j=1}^n x_j \vec{e}_j.
+\end{equation}
+
+Пусть $O \in \mathbb{E}^n$, а $(\vec{e}_1, \dots, \vec{e}_n)$ --- базис
+пространства $\mathbb{R}^n$.
+\begin{definition}
+  Упорядоченную последовательность $(O, \vec{e}_1, \dots, \vec{e}_n)$ называют
+  \textit{репером} пространства $\mathbb{E}^n$; точку $O$ называют
+  \textit{началом} этого репера, а базис $(\vec{e}_1, \dots, \vec{e}_n)$ ---
+  его \textit{базисом}.
+\end{definition}
+
+\begin{definition}
+  Вещественные числа $x_1, \dots, x_n$ в \ref{eq:vec_coords_alt} называют
+  \textit{аффинными координатами} точки $M \in \mathbb{E}^n$ относительно
+  выбранного репера с началом $O \in \mathbb{E}^n$ и базисом
+  $(\vec{e}_1, \dots, \vec{e}_n)$.
+\end{definition}
+
+\begin{definition}
+  \textit{Ориентацией репера} называют ориентацию базиса соответствующего
+  векторного пространства.
+\end{definition}
+
+% TODO: связь между репером, базисом и системой координат
+\textcolor{red}{TODO:} связь между репером, базисом и системой координат.
+
+\begin{definition}
+  Аффинную систему координат, оси которой взаимно ортогональны, называют
+  \textit{декартовой}.
+\end{definition}
+
+Пусть $(O, \vec{e}_1, \dots, \vec{e}_n)$ --- репер в пространстве
+$\mathbb{E}^n$, и пусть даны представления точек $M,N \in \mathbb{E}^n$:
+
+\begin{equation}
+  \begin{aligned}
+    M &= O + \sum_{j=1}^n x_j \vec{e}_j, \\
+    N &= O + \sum_{j=1}^n y_j \vec{e}_j.
+  \end{aligned}
+\end{equation}
+
+Тогда
+
+\begin{equation}
+  \begin{aligned}
+    \vv{MN} &= \vv{MO} + \vv{ON} \\
+    &= \vv{ON} - \vv{OM} \\
+    &= \sum_{j=1}^n (y_j - x_j) \vec{e}_j.
+  \end{aligned}
+\end{equation}
+
+\subsection{Аффинные преобразования}
+
+Пусть
+\begin{equation}
+  M = O + \sum_{j=1}^n x_j \vec{e}_j = O_1 + \sum_{j=1}^n \tilde{x}_j \vec{e}_j,
+\end{equation}
+где
+\begin{equation}
+  O_1 = O + \sum_{j=1}^n a_j \vec{e}_j.
+\end{equation}
+Тогда
+\begin{equation*}
+  O + \sum_{j=1}^n x_j \vec{e}_j = O + \sum_{j=1}^n a_j \vec{e}_j +
+    \sum_{j=1}^n \tilde{x}_j \vec{e}_j,
+\end{equation*}
+откуда следует, что
+\begin{equation}
+  x_j = \tilde{x}_j + a_j, \quad j \in [1:n].
+\end{equation}
+
+Рассмотрим два ортонормальных базиса $(\pvec{e}_1, \dots, \pvec{e}_n)$ и
+$(\ppvec{e}_1, \dots,  \ppvec{e}_n)$ пространства $\mathbb{R}^n$. Как
+известно, они связаны равенствами:
+\begin{equation}
+  \label{eq:basis_transform}
+  \ppvec{e}_i = \sum_{j=1}^n p_{ij} \pvec{e}_j, \quad j \in [1:n].
+\end{equation}
+
+\begin{theorem}
+  Матрица $P = (p_{ij})$ в \autoref{eq:basis_transform} ортогональна.
+\end{theorem}
+
+\begin{proof}
+  Любое преобразование базисов вида \ref{eq:basis_transform} должно сохранять
+  длины векторов, то есть
+  \begin{equation*}
+    \dotprod{\vec{x}}{\vec{x}} = \dotprod{P \vec{x}}{P \vec{x}} \quad \forall
+      \vec{x} \in \mathbb{R}^n .
+  \end{equation*}
+  Так как
+  \begin{equation*}
+    \dotprod{P \vec{x}}{P \vec{x}} = \dotprod{\vec{x}}{P^T P \vec{x}},
+  \end{equation*}
+  а $P^T P$ --- симметричная матрица, то $P^T P = I$, что и является условием
+  ортогональности.
+\end{proof}
+
+Из ортогональности матрицы $P$ следует, что
+\begin{equation*}
+  1 = \det I = \det (P^T P) = \det P^T \det P = (\det P)^2,
+\end{equation*}
+откуда $\det P = \pm 1$. Если элементы матрицы $P$ непрерывно зависят от
+каких-то параметров, то и $\det P$ также непрерывно зависит от них. Отсюда
+следует, что при изменении этих параметров величина $\det P$ не меняется.
+
+Выразим теперь связь между координатами точки в различных реперах. Пусть
+$\pvec{x} = (x_1', \dots, x_n')$ и $\ppvec{x} = (x_1'', \dots, x_n'')$ ---
+разложения вектора $\vec{x}$ по базисам $(\pvec{e}_1, \dots, \pvec{e}_n)$ и
+$(\ppvec{e}_1, \dots, \ppvec{e}_n)$ соответственно, тогда
+\begin{equation*}
+  \ppvec{x} = P \pvec{x}, \quad \pvec{x} = P^T \ppvec{x}.
+\end{equation*}
+Пусть теперь
+\begin{equation*}
+  M = O + \sum_{j=1}^n x_j' \pvec{e}_j = O_1 + \sum_{j=1}^n x_j'' \ppvec{e}_j,
+\end{equation*}
+где
+\begin{equation*}
+  O_1 = O + \sum_{j=1}^n a_j \pvec{e}_j.
+\end{equation*}
+Тогда из равенств
+\begin{equation*}
+  \begin{aligned}
+    O + \sum_{j=1}^n x_j' \pvec{e}_j &= O + \sum_{j=1}^n a_j \pvec{e}_j +
+      \sum_{i=1}^n x_i'' \ppvec{e}_i \\
+    &= O + \sum_{j=1}^n a_j \pvec{e}_j +
+      \sum_{j=1}^n \pvec{e}_j \sum_{i=1}^n p_{ij} x_i''
+  \end{aligned}
+\end{equation*}
+следует, что
+\begin{equation}
+  x_j' = a_j + \sum_{i=1}^n p_{ij} x_i'', \quad j \in [1:n].
+\end{equation}
+Аналогично
+\begin{equation}
+  x_j'' = \sum_{i=1}^n p_{ji} (x_i' - a_i), \quad j \in [1:n].
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Криволинейные системы координат}
+
+\subsection{Определение}
+
+\begin{definition}
+  Открытое связное множество называется \textit{областью}.
+\end{definition}
+
+\begin{definition}
+  Отображение $f : D \subset \mathbb{R}^n \to G \subset \mathbb{R}^n$ называют
+  \textit{гладким отображением класса $C^r(D)$} при
+  $1 \leqslant r < \infty,~r = \infty$ или $r = \omega$, если оно
+  дифференцируемо до порядка $r$ включительно, бесконечно дифференцируемо или
+  аналитично соответственно.
+\end{definition}
+
+\begin{definition}
+  \textit{Криволинейной системой координат} в области $D \subset \mathbb{R}^n$
+  называют систему гладких функций $(x_1 (y_1, \dots, y_n), \dots,
+  x_n (y_1, \dots, y_n))$, задающих взаимно однозначное отображение области $D$
+  на некоторую область $G \subset \mathbb{R}^n$, причём якобиан
+  \begin{equation}
+    J(y) = \det
+    \left(
+    \begin{array}{ccc}
+      \frac{\partial x_1}{\partial y_1}(y) & \dots &
+        \frac{\partial x_n}{\partial y_1}(y) \\
+      \vdots & \ddots & \vdots \\
+      \frac{\partial x_1}{\partial y_n}(y) & \dots &
+        \frac{\partial x_n}{\partial y_n}(y)
+    \end{array}
+    \right)
+  \end{equation}
+  отличен от нуля во всех точках области $D$.
+\end{definition}
+
+\begin{remark}
+  Отличие от нуля якобиана $J(y)$ при всех $y \in D$ гарантирует, что обратное
+  к $f(y)$ отображение $f^{-1}(x)$ также является гладким.
+\end{remark}
+
+\begin{definition}
+  Взаимо однозначное и взаимно непрерывное отображение называется
+  \textit{гомеоморфизмом}.
+\end{definition}
+
+Таким образом, криволинейная система координат задаётся двумя гладкими взаимно
+однозначными отображениями $f(y)$ и $f^{-1}(x)$, устанавливающими гомеоморфизм
+между множествами $D$ и $G$.
+
+\begin{definition}
+  Гладкий гомеоморфизм $f : D \to G$ класса $C^r(D)$ называют
+  \textit{диффеоморфизмом класса $C^r(D)$}, а множества $D$ и $G$ называют
+  \textit{диффеоморфными}.
+\end{definition}
+
+Итак, криволинейная система координат в области $D \subset \mathbb{R}^n$
+является некоторым диффеоморфизмом $f : D \to G \subset \mathbb{R}^n$ с
+ненулевым якобианом.
+
+\subsection{Замена координат}
+
+Пусть $y \in \mathbb{R}^n$, и в области $D \subset \mathbb{R}^n$ две системы
+координат $x(y) = (x_1(y), \dots, x_n(y))$ и $z(y) = (z_1(y), \dots, z_n(y))$
+заданы отображениями $f : D \to G_1 \subset \mathbb{R}^n$ и
+$g : D \to G_2 \subset \mathbb{R}^n$.
+
+\begin{definition}
+  \textit{Заменой координат} $x$ на $z$ называется отображение
+  $\psi : G_1 \to G_2$, задаваемое формулой $\psi = g \circ f^{-1}$.
+\end{definition}
+
+\begin{remark}
+  Замена $\psi : G_1 \to G_2$ --- диффеоморфизм с ненулевым якобианом, то есть
+  это криволинейная система координат в $G_1 \subset \mathbb{R}^n$.
+\end{remark}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \draw (0,0) rectangle (2,4);
+    \draw (1,4) node[rectangle,
+    label=above:{$\mathbb{R}_1^n(x_1,\dots,x_n)$}]{};
+
+    \draw[fill=gray!45] (1,2) node[rectangle]{$D_1$}
+    ellipse (0.75 and 1.5);
+
+    \draw (3,1.5) rectangle (5,2.5);
+    \draw (4,2.5) node[rectangle,
+    label=above:{$\mathbb{R}^n(y_1,\dots,y_n)$}]{};
+
+    \draw[fill=gray!45] (4,2) node[rectangle]{$D$}
+    ellipse (0.75 and 0.3);
+
+    \draw (6,0) rectangle (8,4);
+    \draw (7,4) node[rectangle,
+    label=above:{$\mathbb{R}_2^n(z_1,\dots,z_n)$}]{};
+
+    \draw[fill=gray!45] (7,2) node[rectangle]{$D_2$}
+    ellipse (0.75 and 1.5);
+
+    \draw [stealth-,out=15,in=165] (1,3.25) to node[sloped,above]
+    {$\psi_{zx} = f \circ g^{-1}$} (7,3.25);
+
+    \draw [-stealth,out=-15,in=-165] (1,0.75) to node[sloped,below]
+    {$\psi_{xz} = g \circ f^{-1}$} (7,0.75);
+
+    \draw [stealth-,out=15,in=165] (1.5,2.15) to node[sloped,above]
+    {$f$} (3.5,2.15);
+
+    \draw [-stealth,out=-15,in=-165] (1.5,1.85) to node[sloped,below]
+    {$f^{-1}$} (3.5,1.85);
+
+    \draw [-stealth,out=15,in=165] (4.5,2.15) to node[sloped,above]
+    {$g$} (6.5,2.15);
+
+    \draw [stealth-,out=-15,in=-165] (4.5,1.85) to node[sloped,below]
+    {$g^{-1}$} (6.5,1.85);
+  \end{tikzpicture}
+
+  \caption{}
+  \label{fig:coords_map}
+\end{figure}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Локальные базисы криволинейных координат}
+
+Криволинейные координаты обозначим $\vec{q} = (q_1, q_2, q_3) \in
+Q = \{ \vec{q} \, | \, \vec{q} = \vec{q}(\vec{r}), \vec{r} \in D \}$.
+
+\subsection{Определение}
+
+% TODO: инфа из учебника
+\textcolor{red}{TODO:} инфа из учебника
+
+\begin{definition}
+  Пусть $\vec{q}_0 = (q_{10}, q_{20}, q_{30}) \in Q,~\vec{r}_0 =
+  \vec{r}(\vec{q}_0) = (x_0, y_0, z_0)$, тогда множества
+  \begin{equation}
+    (q_{i0}) = \{ (x,y,z) \in D \, | \, q_i(x,y,z) = q_{i0} \}, \quad i = 1,2,3
+  \end{equation}
+  называют \textit{координатными поверхностями} криволинейной системы координат
+  $\vec{q} = (q_1, q_2, q_3)$ в точке $(q_{10}, q_{20}, q_{30})$, а множества
+  \begin{equation}
+    \begin{aligned}
+      \tilde{q}_1 &= (q_{20}) \cap (q_{30}) \\
+      \tilde{q}_2 &= (q_{10}) \cap (q_{30}) \\
+      \tilde{q}_3 &= (q_{10}) \cap (q_{20})
+    \end{aligned}
+  \end{equation}
+  --- её \textit{координатными линиями} в этой точке.
+\end{definition}
+
+\begin{remark}
+  $(q_{10}) \cap (q_{20}) \cap (q_{30}) = \{ (x_0, y_0, z_0) \}$.
+\end{remark}
+
+По определению, якобиан криволинейной системы координат отличен от нуля в
+каждой точке области определения $Q$. Векторы
+$\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+составляют строки матрицы этого якобиана и поэтому не могут быть нулевыми.
+
+\begin{theorem}
+  Векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+  являются касательными соответственно к линиям
+  $\tilde{q}_1,~\tilde{q}_2,~\tilde{q}_3$ в точке $\vec{q}_0$.
+\end{theorem}
+
+\begin{proof}
+  Для наглядности рассмотрим координатную кривую $\tilde{q}_1$. Эта кривая
+  параметризуется переменной $q_i$ в точке $\vec{q}_0$. Положим
+  $\vec{r} = \vec{r}(q_1, q_{20}, q_{30})$, тогда производая
+  $\parder[\vec{r}]{q_1}$ даст направление касательной к этой кривой в точке
+  $\vec{q}_0$.
+\end{proof}
+
+\begin{definition}
+  Совокупность векторов $(\vec{\tau}_1, \vec{\tau}_2, \vec{\tau}_3)$,
+  определяемых формулой
+  \begin{equation*}
+    \vec{\tau}_i = \frac{\parder[\vec{r}]{q_i}}{\abs{\parder[\vec{r}]{q_i}}},
+      \quad i = 1,2,3
+  \end{equation*}
+  называют \textit{локальным базисом} криволинейной системы координат в точке
+  $\vec{q}_0$.
+\end{definition}
+
+\begin{definition}
+  Если векторы $\vec{\tau}_1,~\vec{\tau}_2,~\vec{\tau}_3$ взаимно ортогональны
+  в точке $\vec{q}_0$, то криволинейная система координат называется
+  \textit{ортогональной} в этой точке.
+\end{definition}
+
+\subsection{Условие ортогональности}
+
+Так как векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},
+~\parder[\vec{r}]{q_3}$ ненулевые, то условия ортогональности локального базиса
+\begin{equation*}
+  \dotprod{\vec{\tau}_i}{\vec{\tau}_j} = 0, \quad i,j = 1,2,3,~i \neq j
+\end{equation*}
+эквивалентны равенствам
+\begin{equation*}
+  \dotprod{\parder[\vec{r}]{q_i}}{\parder[\vec{r}]{q_j}} = 0,
+    \quad i,j = 1,2,3,~i \neq j
+\end{equation*}
+или, в координатной форме,
+\begin{equation}
+  \parder[x]{q_i} \parder[x]{q_j} + \parder[y]{q_i} \parder[y]{q_j} +
+    \parder[z]{q_i} \parder[z]{q_j} = 0, \quad i,j = 1,2,3,~i \neq j.
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Коэффициенты Ламе. Проекции скорости точки на оси криволинейной
+системы координат}
+
+\subsection{Общие сведения}
+
+В качестве пространства будем использовать аффинное евклидово пространство
+$\mathbb{E}^n$.
+
+\begin{definition}
+  \textit{Положением механической системы в момент $t_0$} будем называть точку
+  $M^0 \in \mathbb{E}^n$.
+\end{definition}
+
+\begin{definition}
+  Пусть $J$ --- промежуток на $\mathbb{R}$. \textit{Движением} механической
+  системы будем называть дважды непрерывно дифференцируемую функцию $D : J \to
+  \mathbb{E}^n$ времени $t$ такую, что $D(t_0) = M^0$.
+\end{definition}
+
+\begin{definition}
+  Предположим, что точка этого пространства может быть задана радиус-вектором
+  $\vec{r}$ в какой-либо декартовой системе координат, то есть движение этой
+  точки представлено вектор-функцией $\vec{r} : J \to \mathbb{R}^n$. В этом
+  случае \textit{скоростью} и \textit{ускорением} точки в этом движении
+  называют соответственно вектор-функции $\vec{v} = \dot{\vec{r}}$ и
+  $\vec{v} = \ddot{\vec{r}}$, а \textit{траекторией} точки называют кривую
+  $\{ \vec{r}(t) \in \mathbb{R}^n \, | \, t \in J \}$.
+\end{definition}
+
+% TODO | FIXME: кривая представлена в виде { r \in R | t \in J }. Необходимо
+%   перенести условие из левой части задания множества в правую,
+%   т.е. избавиться от r \in R слева.
+
+\subsection{Коэффициенты Ламе}
+
+Так как
+\begin{equation}
+  \parder[\vec{r}]{q_m} = \parder[x]{q_m} \vec{i} + \parder[y]{q_m} \vec{j} +
+  \parder[z]{q_m} \vec{k},
+\end{equation}
+то, введя обозначение
+\begin{equation}
+  H_m = \abs{\parder[\vec{r}]{q_m}} = \sqrt{\paren{\parder[x]{q_m}}^2 +
+  \paren{\parder[y]{q_m}}^2 + \paren{\parder[z]{q_m}}^2},
+\end{equation}
+векторы локального базиса можно представить в виде
+\begin{equation}
+  \label{eq:local_basis_vec}
+  \vec{\tau}_m = \frac{1}{H_m} \parder[\vec{r}]{q_m},
+\end{equation}
+или, иначе:
+\begin{equation}
+  \label{eq:local_basis_vec_alt}
+  \parder[\vec{r}]{q_m} = H_m \vec{\tau}_m.
+\end{equation}
+
+\begin{definition}
+  Величины $H_m$ (иногда удобнее обозначение $H_{q_m}$) называют
+  \textit{коэффициентами Ламе}.
+\end{definition}
+
+Выразим направляющие косинусы осей локального базиса криволинейной системы
+координат $\vec{q}$ относительно осей декартовой системы координат:
+\begin{equation}
+  \cos\angle (\vec{\tau}_m, \vec{i}) = \dotprod{\vec{\tau}_m}{\vec{i}} =
+    \frac{1}{H_m} \parder[x]{q_m}, \quad \dots, \quad m = 1,2,3.
+\end{equation}
+
+\begin{definition}
+  \textit{Движением точки в криволинейных координатах $\vec{q}$} называют
+  дважды непрерывно дифференцируемую на промежутке $J \subset \mathbb{R}$
+  вектор-функцию $\vec{q}(t)$.
+\end{definition}
+
+\begin{definition}
+  Функции $\dot{\vec{q}}$ и $\ddot{\vec{q}}$ называют соответственно
+  \textit{обобщённой скоростью} и \textit{обобщённым ускорением точки в
+  движении $\vec{q}(t)$}.
+\end{definition}
+
+\begin{definition}
+  Кривую
+  \begin{equation*}
+    \Gamma = \{ \vec{q}(t) \in \mathbb{R}^3 \, | \, t \in J \}
+  \end{equation*}
+  называют \textit{траекторией точки в криволинейных координатах}.
+\end{definition}
+
+\subsection{Проекции скорости точки на оси криволинейной системы координат}
+
+Напишем вектор скорости в виде
+\begin{equation}
+  \label{eq:velocity_def}
+  \vec{v} = \dot{\vec{r}} = \parder[\vec{r}]{q_1} \dot{q_1} +
+  \parder[\vec{r}]{q_2} \dot{q_2} + \parder[\vec{r}]{q_3} \dot{q_3},
+\end{equation}
+тогда по формулам \ref{eq:local_basis_vec_alt} получим
+\begin{equation*}
+  \vec{v} = H_1 \dot{q}_1 \vec{\tau}_1 + H_2 \dot{q}_2 \vec{\tau}_2 + H_3
+  \dot{q}_3 \vec{\tau}_3.
+\end{equation*}
+Это равенство можно рассматривать как разложение вектора скорости по единичным
+векторам осей криволинейных координат; для проекций скорости на координатные
+оси будем иметь
+\begin{equation}
+  \label{eq:velocity_proj}
+  v_{q_m} = H_{q_m} \dot{q}_m \quad (m = 1,2,3).
+\end{equation}
+
+Если криволинейная система ортогональна, то
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{\paren{H_1 \dot{q_1}}^2 + \paren{H_2 \dot{q_2}}^2 + \paren{H_3
+      \dot{q_3}}^2}, \\
+    \cos\angle (\vec{v}, \vec{\tau}_m) = H_m \dot{q}_m v^{-1}, \quad m = 1,2,3.
+  \end{gathered}
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Проекции ускорения точки на оси ортогональной криволинейной системы
+координат}
+
+Для определения проекций ускорения представим их в виде
+\begin{equation*}
+  w_{q_m} = \dotprod{\vec{w}}{\vec{\tau}_m} =
+    \dotprod{\dot{\vec{v}}}{\frac{1}{H_m}}{\parder[\vec{r}]{q_m}},
+\end{equation*}
+откуда
+\begin{equation}
+  \label{eq:accel_proj_temp}
+  H_m w_{q_m} = \dotprod{\dot{\vec{v}}}{\parder[\vec{r}]{q_m}} =
+    \dt \paren{\dotprod{\vec{v}}{\parder[\vec{r}]{q_m}}}
+    - \dotprod{\vec{v}}{\dt \parder[\vec{r}]{q_m}}.
+\end{equation}
+Из \autoref{eq:velocity_def} непосредственно следует
+\begin{equation}
+  \label{eq:accel_dr}
+  \parder[\vec{v}]{\dot{q}_m} = \parder[\vec{r}]{q_m}.
+\end{equation}
+Кроме того, по определению полной производной
+\begin{equation*}
+  \dt \parder[\vec{r}]{q_m} = \pparder[\vec{r}]{q_1}{q_m} \dot{q}_1 +
+    \pparder[\vec{r}]{q_2}{q_m} \dot{q}_2 +
+    \pparder[\vec{r}]{q_3}{q_m} \dot{q}_3;
+\end{equation*}
+но это же выражение получим, если возьмём от обеих частей
+\autoref{eq:velocity_def} частную производную по $q_m$. Действительно, так как
+$\dot{q}_1,~\dot{q}_2,~\dot{q}_3$ зависят только от времени, а не от
+$q_1,~q_2,~q_3$, то
+\begin{equation*}
+  \parder[\vec{v}]{q_m} = \pparder[\vec{r}]{q_m}{q_1} \dot{q}_1 +
+    \pparder[\vec{r}]{q_m}{q_2} \dot{q}_2 + \pparder[\vec{r}]{q_m}{q_3}
+    \dot{q}_3;
+\end{equation*}
+таким образом, имеем
+\begin{equation}
+  \label{eq:accel_dv}
+  \dt \parder[\vec{r}]{q_m} = \parder[\vec{v}]{q_m}.
+\end{equation}
+Подставляя значения $\parder[\vec{r}]{q_m}$ по \autoref{eq:accel_dr} и
+$\dt \parder[\vec{r}]{q_m}$ по \autoref{eq:accel_dv} в равенство
+\ref{eq:accel_proj_temp}, получим
+\begin{equation}
+  \label{eq:accel_proj_temp2}
+  H_m w_{q_m} = \dt \paren{\dotprod{\vec{v}}{\parder[\vec{v}]{\dot{q}_m}}} -
+    \dotprod{\vec{v}}{\parder[\vec{v}]{q_m}}.
+\end{equation}
+Замечая, что
+\begin{equation*}
+  \begin{gathered}
+    \dotprod{\vec{v}}{\parder[\vec{v}]{\dot{q}_m}} =
+      \parder{\dot{q}_m} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+      \parder{\dot{q}_m} \frac{v^2}{2}, \\
+    \dotprod{\vec{v}}{\parder[\vec{v}]{q_m}} =
+      \parder{q_m} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+      \parder{q_m} \frac{v^2}{2},
+  \end{gathered}
+\end{equation*}
+на основании \autoref{eq:accel_proj_temp2} получим выражение проекций ускорения
+на оси криволинейной системы координат:
+\begin{equation}
+  w_{q_m} = \frac{1}{H_m} \paren{\dt \parder[T]{\dot{q}_m} - \parder[T]{q_m}},
+\end{equation}
+где для краткости введено обозначение
+\begin{equation}
+  T = \frac{1}{2} v^2.
+\end{equation}
+Используя линейный дифференциальный оператор Эйлера-Лагранжа, определяемый
+формулой
+\begin{equation}
+  E_{q_m}(T) = \dt \parder[T]{\dot{q}_m} - \parder[T]{q_m},
+\end{equation}
+окончательно получаем
+\begin{equation}
+  \label{eq:accel_proj}
+  w_{q_m} = \frac{1}{H_{q_m}} E_{q_m}(T).
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Натуральный триэдр. Проекции ускорения точки на оси натурального
+триэдра}
+
+\subsection{Натуральный триэдр траектории}
+
+% TODO: картинки из книги
+\textcolor{red}{TODO:} картинки из книги (страница 184)
+
+Рассмотрим некоторую кривую, не лежащую в одной плоскости (кривую двоякой
+кривизны). Установим на этой кривой начало $M_0$ и положительное направление
+отсчёта дуг $\sigma$. Возьмём какую-нибудь текущую точку $M$, положение
+которой определим либо дугой $\sigma$, либо вектор-радиусом $\vec{r}$
+относительно некоторой неподвижной точки $O$. Через точку $M$ проведём
+касательную к кривой; направление касательной в сторону возрастающих значений
+$\sigma$ зададим единичным вектором касательной $\vec{\tau}$.
+
+Возьмём на кривой весьма близкую к $M$ точку $M_1$; пусть положение её
+определяется значением дуги $\sigma + \Delta \sigma$, причём
+$\Delta \sigma > 0$, то есть $M_1$ лежит за $M$ в сторону положительного
+отсчёта дуги. Единичный вектор касательной в точке $M_1$ обозначим через
+$\vec{\tau}_1$. Проведём через $\vec{\tau}$ плоскость $\Pi$, параллельную
+$\vec{\tau}_1$; чтобы построить её, достаточно перенести $\vec{\tau}_1$ в
+точку $M$; два вектора $\vec{\tau}$ и $\vec{\tau}_1$, имеющие начало в точке
+$M$, определяют положение $\Pi$. При изменении положения $M_1$ плоскость $\Pi$
+также изменяет своё положение, вращаясь вокруг $\vec{\tau}$; если будем
+приближать $M_1$ к $M$, уменьшая $\Delta \sigma$ до нуля, то эта плоскость
+будет приближаться к некоторому предельному положению $\Pi_0$, называемому
+\textit{соприкасающейся плоскостью}.
+
+В точке $M$ проведём плоскость $N_0$, перпендикулярную к касательной. Эта
+плоскость называется \textit{нормальной плоскостью} кривой. Любая прямая,
+проведённая в этой плоскости через точку $M$, будет перпендикулярна к
+$\vec{\tau}$, то есть будет \textit{нормальна} кривой; линия пересечения
+нормальной и соприкасающейся плоскостей определяет \textit{главную нормаль}
+кривой. Иными словами, главной нормалью называется нормаль, лежащая в
+соприкасающейся плоскости. Нормаль, перпендикулярная к главной нормали,
+называется \textit{бинормалью} кривой.
+
+\begin{definition}
+  Совокупность трёх взаимно перпендикулярных осей:
+  \begin{enumerate}
+    \item касательной, направленной в сторону возрастания дуги,
+    \item главной нормали, направленной в сторону вогнутости кривой, и
+    \item бинормали, направленной по отношению к касательной и главной нормали
+      так же, как ось $Oz$ расположена по отношению к осям $Ox$ и $Oy$,
+  \end{enumerate}
+  образует так называемый \textit{натуральный триэдр}
+  (естественный трёхгранник) кривой. Единичные векторы этих осей обозначим
+  соответственно через $\vec{\tau}, \vec{n}$ и $\vec{b}$.
+\end{definition}
+
+Найдём выражения этих трёх единичных векторов натурального триэдра через
+вектор-радиус точки на кривой, заданный как вектор-функция дуги:
+\begin{equation}
+  \vec{r} = \vec{r}(\sigma).
+\end{equation}
+
+Найдём прежде всего $\vec{\tau}$. По определению векторной производной вектор
+$\der[\vec{r}]{\sigma}$ направлен по касательной к годографу вектора $\vec{r}$
+в сторону возрастающих $\sigma$. С другой стороны, численная величина
+производной равна
+\begin{equation*}
+  \abs{\der[\vec{r}]{\sigma}} = \frac{\abs{d \vec{r}}}{d \sigma} = 1.
+\end{equation*}
+Таким образом, векторная производная представляет собой искомый единичный
+вектор касательной:
+\begin{equation}
+  \vec{\tau} = \der[\vec{r}]{\sigma}.
+\end{equation}
+
+Для определения единичного вектора главной нормали $\vec{n}$ обратимся к
+рисунку. Рассмотрим равнобедренный треугольник, образованный векторами
+$\vec{\tau}$ и $\vec{\tau}_1$ в плоскости $\Pi$. Если точка $M_1$ взята на
+весьма малом расстоянии $\Delta \sigma$ от точки $M$, то угол $\varepsilon$
+между касательными $\vec{\tau}$ и $\vec{\tau}_1$ в смежных точках кривой ---
+его называют \textit{углом смежности} --- будет также мал и вектор
+$\Delta \vec{r}$ с тем меньшей ошибкой, чем меньше $\Delta \sigma$, можно
+считать перпендикулярным к $\vec{\tau}$ и, следовательно, параллельным вектору
+нормали $\pvec{n}$, лежащему с $\Delta \vec{\tau}$ в одной и той же плоскости
+$\Pi$. По величине $\abs{\Delta \vec{\tau}}$, как основание равнобедренного
+треугольника с малым углом $\varepsilon$ при вершине и боковыми сторонами,
+равными единице, будет равен
+\begin{equation*}
+  \abs{\Delta \vec{\tau}} = 2 \abs{\vec{\tau}} \sin \frac{\varepsilon}{2}
+    \approx 2 \cdot 1 \cdot \frac{\varepsilon}{2} = \varepsilon.
+\end{equation*}
+Отсюда найдём (с точностью до малых высших порядков)
+\begin{equation*}
+  \Delta \vec{\tau} = \varepsilon \pvec{n},
+\end{equation*}
+или
+\begin{equation*}
+  \pvec{n} = \frac{1}{\varepsilon} \Delta \vec{\tau} =
+    \deltader{\vec{\tau}}{\sigma} \cdot \frac{\Delta \sigma}{\varepsilon}.
+\end{equation*}
+Будем приближать $\Delta \sigma$ к нулю, тогда точка $M_1$ будет стремиться к
+$M$, плоскость $\Pi$ --- к соприкасающейся плоскости $\Pi_0$, единичный вектор
+нормали $\pvec{n}$ --- к искомому единичному вектору $\vec{n}$, и мы будем
+иметь
+\begin{equation*}
+  \vec{n} = \lim_{\Delta \sigma \to 0} \deltader{\vec{\tau}}{\sigma} \cdot
+    \lim_{\Delta \sigma \to 0} \frac{\Delta \sigma}{\varepsilon}.
+\end{equation*}
+
+Первый предел равен векторной производной
+\begin{equation*}
+  \der[\vec{\tau}]{\sigma} = \der{\sigma} \paren{\der[\vec{r}]{\sigma}} =
+    \sder[\vec{r}]{\sigma};
+\end{equation*}
+что же касается второго предела, то заметим, что отношение
+$\frac{\varepsilon}{\Delta \sigma}$, определяющее среднюю скорость поворота
+касательной к кривой при переходе от данной точки к смежной, характеризует
+\textit{среднюю кривизну} кривой на участке $(\sigma, \sigma + \Delta \sigma)$,
+а величина
+\begin{equation}
+  \lim_{\Delta \sigma \to 0} \frac{\varepsilon}{\Delta \sigma} = K
+\end{equation}
+определяет \textit{кривизну} кривой в данной точке.
+
+Таким образом, имеем следующее выражение единичного вектора \textit{главной
+нормали}:
+\begin{equation}
+  \label{eq:main_norm}
+  \vec{n} = \frac{1}{K} \der[\vec{\tau}]{\sigma} = \frac{1}{K}
+    \sder[\vec{r}]{\sigma}.
+\end{equation}
+Величину $1/K = \rho$, имеющую размерность длины, называют \textit{радиусом
+кривизны} кривой в данной точке.
+
+В случае произвольной кривой через данную её точку и две смежные с нею точки
+можно провести круг, который при стремлении смежных точек к данной
+рассматриваемой будет стремиться к некоторому предельному кругу, называемому 
+\textit{соприкасающимся кругом} или \textit{кругом кривизны}. Радиус этого круга
+будет радиусом кривизны кривой, центр круга $C$ (\textcolor{red}{TODO:} ссылка
+на картинку) --- \textit{центром кривизны} кривой. Очевидно, круг кривизны лежит
+в соприкасающейся плоскости, центр кривизны $C$ --- на главной нормали со
+стороны вогнутости кривой.
+
+Введя радиус кривизны $\rho$, получим
+\begin{equation}
+  \vec{n} = \rho \der[\vec{\tau}]{\sigma} = \rho \sder[\vec{r}]{\sigma}.
+\end{equation}
+
+Теперь уже не составляет труда найти и единичный вектор бинормали. Из условия
+выбора положительного направления на бинормали следует:
+\begin{equation}
+  \vec{b} = \crossprod{\vec{\tau}}{\vec{n}} = \frac{1}{K}
+  \paren{\crossprod{\der[\vec{r}]{\sigma}}{\sder[\vec{r}]{\sigma}}} = \rho
+  \paren{\crossprod{\der[\vec{r}]{\sigma}}{\sder[\vec{r}]{\sigma}}}.
+\end{equation}
+
+\subsection{Разложение ускорения по осям натурального триэдра траектории}
+
+Обозначим через $v_\tau$ проекцию вектора скорости на направление касательной
+к траектории. Очевидно, что $v_\tau$ по абсолютной величине равно численной
+величине скорости $v$; что же касается знака $v_\tau$, то $v_\tau$ положительно,
+если направление движения в данный момент совпадает с направлением
+положительного отсчёта дуг $\sigma$ по траектории, и отрицательно в
+противоположном случае. Будем иметь
+\begin{equation}
+  \label{eq:vel_natural}
+  \vec{v} = v_\tau \vec{\tau}.
+\end{equation}
+
+Если $s$ --- пройденный путь, то $d \sigma = ds$, когда $d \sigma > 0$, и
+$d \sigma = -ds$, если $d \sigma <0$, поэтому
+\begin{equation}
+  \label{eq:v_tau}
+  v_\tau = \dt[\sigma] = \pm \dt[s] = \pm v.
+\end{equation}
+
+Вектор ускорения есть производная по времени от вектора скорости, поэтому
+\begin{equation}
+  \label{eq:acc_natural_temp}
+  \vec{w} = \dt[\vec{v}] = \dt (v_\tau \vec{\tau}) = \dt[v_\tau] \vec{\tau} +
+    v_\tau \dt[\vec{\tau}].
+\end{equation}
+
+Далее, имеем
+\begin{equation*}
+  \dt[\vec{\tau}] = \dt[\vec{\tau}] \dt[\sigma];
+\end{equation*}
+согласно формулам \ref{eq:main_norm} и \ref{eq:v_tau} найдём
+\begin{equation*}
+  \dt[\vec{\tau}] = \frac{1}{\rho} \vec{n} v_\tau.
+\end{equation*}
+
+Подставив полученное выражение в равенство \ref{eq:acc_natural_temp}, будем
+иметь
+\begin{equation}
+  \label{eq:acc_natural}
+  \vec{w} = \vec{\tau} \dt[v_\tau] + \vec{n} \frac{v^2}{\rho},
+\end{equation}
+где $v_\tau^2$ заменено на равное ему $v^2$.
+
+Равенство \ref{eq:acc_natural} представляет собой \textit{разложение вектора
+ускорения по осям натурального триэдра}.
+
+Обозначим коэффициенты при единичных векторах $\vec{\tau},~\vec{n}$ и $\vec{b}$
+в разложении \ref{eq:acc_natural}, то есть проекции ускорения на оси
+натурального триэдра, соответственно через $w_\tau,~w_n$ и $w_b$; тогда будем
+иметь
+\begin{equation}
+  \label{eq:acc_natural_general}
+  \vec{w} = w_\tau \vec{\tau} + w_n \vec{n} + w_b \vec{b},
+\end{equation}
+причём из \autoref{eq:acc_natural} следует, что
+\begin{equation*}
+  w_\tau = \dt[v_\tau] = \ddt[\sigma], \quad w_n = \frac{v^2}{\rho},
+    \quad w_b = 0.
+\end{equation*}
+
+Последнее равенство говорит о том, что вектор ускорения перпендикулярен к
+бинормали, то есть \textit{ускорение лежит в соприкасающейся плоскости}.
+
+Первое слагаемое в разложении \ref{eq:acc_natural_general}, $w_\tau \vec{\tau}$,
+даёт \textit{касательную} (тангенциальную) составляющую ускорения, второе, $w_n
+\vec{n}$, --- \textit{нормальную} составляющую ускорения. Иногда для краткости
+их называют просто касательным и нормальным ускорениями.
+
+Нормальное ускорение всегда совпадает по направлению с главной нормалью, так как
+$w_n = \frac{v^2}{\rho}$ --- существенно положительная величина. Вспоминая ранее
+сказанное о направлении $\vec{n}$, видим, что \textit{нормальное ускорение
+направлено к центру кривизны траектории} (нормальное ускорение иногда ещё
+называют поэтому \textit{центростремительным}), то есть по главной нормали к
+траектории в сторону её вогнутости. Отсюда вытекает свойство ускорения:
+\textit{вектор ускорения направлен в сторону вогнутости траектории}.
+
+Итак, \textit{вектор ускорения в криволинейном движении может быть представлен
+как геометрическая сумма двух ускорений: касательного и нормального}.
+
+Величина ускорения может быть представлена так:
+% TODO: dv/dt или dv_\tau/dt?
+\begin{equation}
+  w = \sqrt{w_\tau^2 + w_n^2} =
+    \sqrt{\paren{\dt[v_\tau]}^2 + \frac{v^4}{\rho^2}},
+\end{equation}
+а направление задано косинусами углов, составляемых им с касательной и главной
+нормалью к траектории:
+\begin{equation}
+  \cos(\widehat{\vec{w}, \vec{\tau}}) = \frac{w_\tau}{w}, \quad
+  \cos(\widehat{\vec{w}, \vec{n}}) = \frac{w_n}{w}.
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Определение кривизны траектории точки по движению}
+
+\subsection{Кинематический метод}
+
+Если известны модули скорости $v = v(t)$ и ускорения $w = w(t)$ движения точки,
+то кривизну траектории можно найти по формулам:
+\begin{equation}
+  \begin{gathered}
+    w_\tau = \dot{v}, \quad w_n = \sqrt{w^2 - w_\tau^2}, \\
+    K = \frac{w_n}{v^2}, \quad \rho = \frac{1}{K}.
+  \end{gathered}
+\end{equation}
+
+Если движение точки задано тройкой скалярных функций $x(t),~y(t),~z(t)$, то
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{(\dot{x}(t))^2 + (\dot{y}(t))^2 + (\dot{z}(t))^2}, \\
+    w = \sqrt{(\ddot{x}(t))^2 + (\ddot{y}(t))^2 + (\ddot{z}(t))^2}. \\
+  \end{gathered}
+\end{equation}
+
+% TODO: можно ли здесь употреблять слово "ортогональных"?
+Если же движение точки задано тройкой ортогональных криволинейных координат
+--- скалярных функций $q_1(t),~q_2(t),~q_3(t)$, то проекции скорости и
+ускорения точки выразятся как
+\begin{equation*}
+  v_{q_m} = H_{q_m} \dot{q}_m, \quad w_{q_m} = \frac{1}{H_{q_m}} E_{q_m} (T),
+    \quad m = 1,2,3.
+\end{equation*}
+Тогда
+\begin{equation}
+  \begin{gathered}
+    v = \sqrt{(v_{q_1}(t))^2 + (v_{q_2}(t))^2 + (v_{q_3}(t))^2}, \\
+    w = \sqrt{(w_{q_1}(t))^2 + (w_{q_2}(t))^2 + (w_{q_3}(t))^2}. \\
+  \end{gathered}
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Движение точки по прямой и по окружности}
+
+\subsection{Прямолинейное движение}
+
+\begin{definition}
+  \textit{Прямолинейное движение} --- движение точки, траектория которой лежит
+  на прямой.
+\end{definition}
+
+Начало системы $Oxyz$ поместим на этой прямой, а ось $x$ направим вдоль неё.
+Тогда получим уравнение траектории:
+\begin{equation*}
+  y = 0, \quad z = 0,
+\end{equation*}
+тогда
+\begin{equation*}
+  \begin{gathered}
+    v^2 = (\dot{x}(t))^2, \\
+    w^2 = (\ddot{x}(t))^2 \\
+  \end{gathered}
+\end{equation*}
+и, как следствие,
+\begin{equation*}
+  \begin{gathered}
+    w_\tau^2 = (\dot{v})^2 = (\ddot{x})^2, \quad
+      w_n = \sqrt{w^2 - w_\tau^2} = 0, \\
+    K = 0, \quad \rho = +\infty.
+  \end{gathered}
+\end{equation*}
+
+\begin{definition}
+  Прямолинейное движение называют \textit{равномерным}, если $v(t) = v_0$,
+  где $v_0$ --- постоянная.
+
+  Уравнение движения:
+  \begin{equation*}
+    x(t) = x_0 + v_0 (t - t_0), \quad x(t_0) = x_0.
+  \end{equation*}
+
+  Естественная координата:
+  \begin{equation*}
+    s = \abs{v_0 (t - t_0)}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Прямолинейное движение называют \textit{равнопеременным}, если $w(t) = w_0$,
+  где $w_0$ --- постоянная.
+
+  Уравнение движения:
+  \begin{equation*}
+    \begin{gathered}
+      x(t) = x_0 + v_0 (t - t_0) + \frac{w_0}{2} (t - t_0)^2, \\
+      x(t_0) = x_0, \quad \dot{x}(t_0) = v(t_0) = v_0.
+    \end{gathered}
+  \end{equation*}
+
+  Естественная координата:
+  \begin{equation*}
+    s = \abs{v_0 (t - t_0) + \frac{w_0}{2} (t - t_0)^2}.
+  \end{equation*}
+\end{definition}
+
+\section{Движение по окружности}
+
+\begin{definition}
+  \textit{Углом поворота между векторами} называется вектор
+  \begin{equation*}
+    \angle (\vec{a}, \vec{b}) = \left\{
+      \begin{array}{l l}
+        (\arccos(\vec{a}, \vec{b})) \cdot
+        \frac{\crossprod{\vec{a}}{\vec{b}}}
+        {\abs{\crossprod{\vec{a}}{\vec{b}}}}, &
+        \vec{a} \nparallel \vec{b}; \\
+
+        \vec{0}, & \vec{a} \parallel \vec{b}.
+      \end{array}
+      \right.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  \textit{Углом между векторами $\vec{a}$ и $\vec{b}$} называется величина
+  \begin{equation*}
+    \abs{\angle (\vec{a}, \vec{b})} = \arccos(\vec{a}, \vec{b}).
+  \end{equation*}
+\end{definition}
+
+Когда говорят об угле между векторами $\vec{a}$ и $\vec{b}$, отсчитываемом от
+$\vec{a}$ к $\vec{b}$, то имеют в виду угол поворота $\angle(\vec{a}, \vec{b})$.
+
+\begin{definition}
+  \textit{Движением по окружности} называют любое движение точки, траектория
+  которого лежит на окружности.
+\end{definition}
+
+В случае движения по окружности угол смежности $\varepsilon$ равен центральному
+углу между радиусами, проведёнными в точки касания, а соответствующая дуга
+равна произведению этого угла на радиус $R$, то есть
+\begin{equation*}
+  \Delta \sigma = \varepsilon R, \implies
+    \frac{\varepsilon}{\Delta \sigma} = \frac{1}{R},
+\end{equation*}
+поэтому
+\begin{equation*}
+  K = \lim_{\Delta \sigma \to 0} \frac{\varepsilon}{\Delta \sigma} =
+    \frac{1}{R}, \quad \rho = R.
+\end{equation*}
+
+% TODO
+(\textcolor{red}{TODO:} решить, куда поместить определения угловой скорости и
+ускорения, а также скалярные и векторные формулы скорости и ускорнения точек)
+
+\begin{definition}
+  Движение по окружности называют \textit{равномерным вращением}, если
+  $\omega(t) = \omega_0$, где $\omega_0$ --- постоянная.
+
+  В этом случае
+  \begin{equation*}
+    \varphi(t) = \varphi_0 + \omega_0 (t - t_0), \quad \varphi(t_0) = \varphi_0.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Движение по окружности называют \textit{равнопеременным вращением}, если
+  $\varepsilon = \varepsilon_0$, где $\varepsilon_0$ --- постоянная.
+
+  В этом случае
+  \begin{equation*}
+    \begin{gathered}
+      \varphi(t) = \varphi_0 + \omega_0 (t - t_0) +
+        \frac{\varepsilon_0}{2} (t - t_0)^2, \\
+      \varphi(t_0) = \varphi_0, \quad
+        \dot{\varphi(t_0)} = \omega(t_0) = \omega_0.
+    \end{gathered}
+  \end{equation*}
+\end{definition}
+
+Рассмотрим частные случаи движения по окружности:
+\begin{enumerate}
+  \item Если тело вращается равномерно, то $\varepsilon(t) = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = R \omega_0^2.
+    \end{equation*}
+
+  \item Если в некоторый момент времени угловая скорость $\omega$ тела достигает
+    максимального или минимального значения, то
+    $\dot{\omega} = \varepsilon = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = R \omega_0^2.
+    \end{equation*}
+
+  \item Если в некоторый момент угол поворота достигает максимального или
+    минимального значения, то $\dot{\varphi} = \omega = 0$, поэтому
+    \begin{equation*}
+      w_\tau = 0, \quad w_n = 0.
+    \end{equation*}
+\end{enumerate}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Движение механической системы. Твёрдое тело. Число степеней свободы
+положения}
+
+\subsection{Движение механической системы}
+
+Пусть $T$ --- некоторое множество индексов $\tau$, которыми помечены все точки
+механической системы, а $J \subset \mathbb{R}$ --- промежуток времени $t$, на
+котором определено движение механической системы.
+
+Пространством будем считать аффинное евклидово пространство $\mathbb{E}^n$;
+точку этого пространства $M = (x,y,z) \in \mathbb{E}^n$ будем представлять
+вектор-радиусом $\vec{r}$ в декартовой системе координат.
+
+\begin{definition}
+  \textit{Положением механической системы в момент времени $t_0$} будем называть
+  семейство $\mathcal{M} = \{ M_\tau \}_{\tau \in T}$ точек в $\mathbb{E}^n$.
+\end{definition}
+
+\begin{definition}
+  \textit{Движением механической системы} будем называть семейство
+  $\mathcal{DM} = \{ D_\tau : J \to \mathbb{E}^n \}_{\tau \in T}$ дважды
+  непрерывно дифференцируемых функций времени $t$ такое, что
+  \begin{equation*}
+    \forall \tau \in T \quad D_\tau(t_0) = M_\tau.
+  \end{equation*}
+
+  Ясно, что положением механической системы в любой другой момент времени
+  $t \in J$ будет семейство $\{D_\tau(t)\}_{\tau \in T}$.
+\end{definition}
+
+\begin{definition}
+  \textit{Перемещением механической системы} за время от $t_1$ до $t_2$ называют
+  семейство векторов $\{ \vv{AB}~|~A = D_\tau(t_1),~ B = D_\tau(t_2) \}_{\tau 
+  \in T}$.
+\end{definition}
+
+\subsection{Твёрдое тело}
+
+\begin{definition}
+  \textit{Классом движений} назовём некоторое множество движений $\mathcal{DM}$.
+\end{definition}
+
+\begin{definition}
+  \textit{Неизменяемой на классе движений} назовём такую механическую систему,
+  что
+  \begin{equation*}
+    \forall t \in J \quad \forall \tau_1, \tau_2 \in T \quad
+      \rho(D_{\tau_1}(t), D_{\tau_2}(t)) = \rho(M_{\tau_1}, M_{\tau_2})
+  \end{equation*}
+  для любого движения этого класса.
+\end{definition}
+
+\begin{definition}
+  Механическую систему назовём \textit{сплошной связной средой на классе
+  движений}, если каждое её положение есть область или замкнутая область в
+  $\mathbb{E}^n$.
+\end{definition}
+
+\begin{definition}
+  \textit{Твёрдым телом} или \textit{абсолютно твёрдым телом на классе движений}
+  назовём сплошную связную неизменяемую механическую систему на этом классе
+  движений.
+\end{definition}
+
+\subsection{Число степеней свободы}
+
+Будем говорить, что движение $\mathcal{DM} = \{ D_\tau \}_{\tau \in T}$ может
+быть выражено через систему скалярных функций
+\begin{equation*}
+  q_i : J \to \mathbb{R}, \quad i = 1, \dots, m,
+\end{equation*}
+если
+\begin{equation}
+  \begin{array}{c c}
+    \forall \tau \in T & \exists (q_1, \dots, q_m) \mapsto
+      f_\tau(q_1, \dots, q_m) \\
+    \forall t \in J & D_\tau(t) = f_\tau(q_1(t), \dots, q_m(t)).
+  \end{array}
+\end{equation}
+
+\begin{definition}
+  Говорят, что механическая система имеет \textit{$s$ степеней свободы положения
+  на классе движений}, если всякое движение этого класса может быть выражено
+  через некоторую систему скалярных функций
+  \begin{equation*}
+    q_i : J \to \mathbb{R}, \quad i = 1, \dots, s
+  \end{equation*}
+  и если хотя бы одно движение этого класса не может быть выражено ни через
+  какую систему из меньшего числа скалярных функций.
+
+  Если класс движений очевиден из контекста, то говорят просто о \textit{числе
+  $s$ степеней свободы} механической системы.
+\end{definition}
+
+Рассмотрим механическую систему, состоящую из конечного числа $N$ точек. Такая
+система на классе всех движений в $\mathbb{E}^n$ имеет $s = n \cdot N$ степеней
+свободы.
+
+Рассмотрим такой подкласс всех движений этой системы, для которых координаты
+$(x_\nu, y_\nu, z_\nu),~\nu=1,\dots,N$ её точек удовлетворяют уравнениям
+\begin{equation*}
+  f_\nu(x_1, y_1, z_1, \dots, x_N, y_N, z_N) = 0, \quad \nu = 1,\dots,m,
+\end{equation*}
+причём фунции $f_\nu$ аргументов $(x_1,y_1,z_1, \dots, x_N,y_N,z_N)$ независимы
+при $t \in J$; будем считать, что ранг матрицы Якоби этих функций равен $m$. В
+этом случае говорят, что рассматривается механическая система из $N$ точек,
+\textit{стеснённая $m$ голономными связями}.
+
+\begin{theorem}
+  Механическая система в $\mathbb{E}^n$ из $N$ точек, стеснённая $m$ голономными
+  связями, имеет
+  \begin{equation*}
+    s = n \cdot N - m
+  \end{equation*}
+  степеней свободы.
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} доказать утверждение)
+\end{proof}
+
+\begin{theorem}
+  Для твёрдого тела на классе всех его движений в $\mathbb{E}^n$ число степеней
+  свободы положения равно
+  \begin{equation*}
+    s = \frac{n \cdot (n + 1)}{2}.
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} доказать утверждение (указания можно найти на 37
+  странице конспекта))
+\end{proof}
+
+\begin{definition}
+  Движение твёрдого тела называют \textit{поступательным}, если у подвижного
+  репера, связанного с этим телом, с течением времени может изменяться только
+  начало.
+\end{definition}
+
+\begin{definition}
+  Движение твёрдого тела называют \textit{вращением вокруг точки $O$}, если
+  с течением времени не меняются координаты (в неподвижной системе) некоторой
+  точки $O$ этого тела.
+\end{definition}
+
+% TODO
+(\textcolor{red}{TODO:} найти число степеней свободы положения твёрдого тела на
+этих двух классах движений)
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+\section{Группа движений аффинного евклидова пространства}
+
+\subsection{Предварительные сведения}
+
+\begin{definition}
+  \textit{Законом композиции на множестве $X$} называют отображение
+  \begin{equation*}
+    * : X \times X \to X.
+  \end{equation*}
+  Вместо $*(a,b)$ пишут $a * b$.
+\end{definition}
+
+\begin{definition}
+  Пусть $*$ --- закон композиции на $X$. Тогда пару $(X, *)$ называют
+  \textit{алгебраической структурой}.
+\end{definition}
+
+\begin{definition}
+  Пусть $*$ --- закон композиции на $X$. Если
+  \begin{equation*}
+    \forall a,b,c \in X \quad a * (b * c) = (a * b) * c,
+  \end{equation*}
+  то закон композиции $*$ называется \textit{ассоциативным}.
+\end{definition}
+
+\begin{definition}
+  Алгебраическая структура $(X, *)$ называется \textit{полугруппой}, если закон
+  композиции $*$ ассоциативен.
+\end{definition}
+
+\begin{definition}
+  Элемент $e \in X$ называется \textit{единичным} или \textit{нейтральным}
+  относительно закона композиции $*$, если
+  \begin{equation*}
+    \forall x \in X \quad e * x = x * e = x.
+  \end{equation*}
+\end{definition}
+
+\begin{remark}
+  В алгебраической структуре $(X, *)$ не может быть более одного единичного
+  элемента.
+\end{remark}
+
+\begin{definition}
+  Полугруппу с единицей называют \textit{моноидом}.
+\end{definition}
+
+\begin{definition}
+  Элемент $a$ моноида $(X, *, e)$ называют \textit{обратимым}, если
+  \begin{equation*}
+    \exists b \in X: \quad a * b = b * a = e.
+  \end{equation*}
+  Для элемента $b$ используют обозначение $a^{-1}$.
+\end{definition}
+
+\begin{definition}
+  Моноид, все элементы которого обратимы, называют \textit{группой}.
+\end{definition}
+
+\begin{definition}
+  Закон композиции $*$ называют \textit{коммутативным}, если
+  \begin{equation*}
+    \forall a,b \in X \quad a * b = b * a.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Группу с коммутативным законом композиции называют \textit{абелевой}
+  (\textit{коммутативной}) группой.
+\end{definition}
+
+\begin{definition}
+  Подмножество $H$ группы $G$ называется \textit{подгруппой группы $G$}, если:
+  \begin{enumerate}
+    \item $H$ содержит единичный элемент из $G$:
+      \begin{equation*}
+        \quad e \in H;
+      \end{equation*}
+    \item $H$ содержит композицию любых двух элементов из $H$:
+      \begin{equation*}
+        \forall a,b \in H \quad a * b \in H;
+      \end{equation*}
+    \item $H$ содержит вместе со всяких своим элементом $h$ обратный к нему
+      элемент $h^{-1}$:
+      \begin{equation*}
+        \forall h \in H \quad h^{-1} \in H.
+      \end{equation*}
+  \end{enumerate}
+\end{definition}
+
+Пусть $s(\Omega)$ --- множество всех биективных отображений $f : \Omega \to
+\Omega$. Введём закон композиции $* : s(\Omega) \times s(\Omega) \to s(\Omega)$
+такой, что
+\begin{equation*}
+  \forall \varphi, \psi \in s(\Omega) \quad \varphi * \psi = \varphi \circ \psi;
+\end{equation*}
+тогда $(s(\Omega), *)$ --- группа, причём её единицей является тождественное
+отображение $\id_\Omega: \Omega \to \Omega$ такое, что
+\begin{equation*}
+  \forall x \in \Omega \quad \id_\Omega(x) = x.
+\end{equation*}
+
+\subsection{Группа движений твёрдого тела}
+
+% TODO
+(\textcolor{red}{TODO:} Дальше может быть путаница в терминах. Короче, надо
+понять, что в его понимании такое "перемещение", но вот как я это понимаю.
+Рассмотрим некоторое движение твёрдого тела $\mathcal{DM} = \{ D_\tau : J \to
+\mathbb{E}^3 \}_{\tau \in T}$. Функция $D_\tau$ задаёт перемещение точки
+$M_\tau$ твёрдого тела. У нас есть формула, по которому мы можем найти
+коэффициенты $x_j^\tau(t)$, то есть перемещению точки соответствует биекция
+$D : \mathbb{E}^3 \to \mathbb{E}^3$, задающаяся этой формулой. В этом случае
+получается, что каждому движению твёрдого тела соответствует множество таких
+биекций. Если это всё верно, то надо аккуратно переписать всё в верных
+терминах.)
+
+Рассмотрим движение $\mathcal{DM} = \{ D_\tau : J \to \mathbb{E}^3 \}_{\tau \in
+T}$ механической системы в $\mathbb{E}^3$.
+
+Пусть $(O, \vec{e}_1, \vec{e}_2, \vec{e}_3)$ --- некоторый фиксированный репер в
+$\mathbb{E}^3$ и пусть
+\begin{equation}
+  \label{eq:coords_in_immovable_frame}
+  M_\tau = D_\tau(t) = O + \sum_{j=1}^{3} x_j^\tau(t) \vec{e}_j, \quad
+    \tau \in T.
+\end{equation}
+
+Так как свободное твёрдое тело (твёрдое тело на классе всех движений в
+$\mathbb{E}^3$) имеет 6 степеней свободы, то функции $x_j^\tau(t)$ могут быть
+выражены через какие-то 6 скалярных функций $q_1, \dots, q_6$.
+
+етыре точки $M_0, M_1, M_2, M_3$ твёрдого тела выберем так, чтобы векторы
+$\vv{M_0 M_1}, \vv{M_0 M_2}, \vv{M_0 M_3}$ образовывали ортонормированный базис
+$(\vec{i}_1, \vec{i}_2, \vec{i}_3)$ пространства $\mathbb{R}^3$. Тогда каждая
+точка $M_\tau$ твёрдого тела определяется своими аффинными координатами в репере
+$(M_0, \vec{i}_1, \vec{i}_2, \vec{i}_3)$:
+\begin{equation}
+  \label{eq:coords_in_movable_frame}
+  M_\tau = M_0 + \sum_{j=1}^{3} y_j^\tau \vec{i}_j,
+\end{equation}
+причём координаты $y_j^\tau$ не зависят от времени.
+
+Векторы $\vec{i}_1, \vec{i}_2, \vec{i}_3$, построенные по движущимся точкам
+$M_0, M_1, M_2, M_3$, являются функциями времени:
+\begin{equation*}
+  \vec{i}_j = \vec{i}_j(t), \quad j = 1,2,3.
+\end{equation*}
+
+Ортонормированные базисы $(\vec{e}_1, \vec{e}_2, \vec{e}_3)$ и $(\vec{i}_1(t),
+\vec{i}_2(t), \vec{i}_3(t))$ пространства $\mathbb{R}^3$ связаны равенствами
+\begin{equation}
+  \vec{i}_k = \sum_{j=1}^{3} p_{kj}(t) \vec{e}_j, \quad k = 1,2,3,
+\end{equation}
+где матрица $P(t) = (p_{kj}(t))$ ортогональна.
+
+Если $D_{M_0}$ --- движение точки $M_0$ и
+\begin{equation*}
+  D_{M_0}(t) = O + \sum_{j=1}^{3} a_j(t) \vec{e}_j,
+\end{equation*}
+то
+\begin{equation}
+  \label{eq:free_motion_point_coords}
+  x_j^\tau(t) = a_j(t) + \sum_{k=1}^{3} p_{kj}(t) y_k^\tau, \quad j = 1,2,3.
+\end{equation}
+
+Элементы $p_{kj}$ ортогональной матрицы $P$ могут быть выражены через углы
+Эйлера $\varphi, \psi, \theta$, поэтому формулы
+\ref{eq:free_motion_point_coords} дают искомое представление для функций
+$x_j^\tau$ через шесть функций $a_1(t), a_2(t), a_3(t), \varphi(t), \psi(t),
+\theta(t)$. Это значит, что всякому перемещению соответствует биективное
+отображение $D : \mathbb{E}^3 \to \mathbb{E}^3$, определяемое формулами
+\ref{eq:free_motion_point_coords}.
+
+Задавая всевозможные движения (то есть функции $a_1, a_2, a_3, \varphi, \psi,
+\theta$) и фиксируя всевозможные моменты времени $t \in J$, мы будем получать те
+или иные перемещения твёрдого тела за время от $t_0$ до $t$ и соответствующие
+ему биекции $D : \mathbb{E}^3 \to \mathbb{E}^3$.
+
+\begin{theorem}
+  Семейство $D_3$ всех таких биекций является подгруппой группы
+  $s(\mathbb{E}^3)$.
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} указания на странице 44 конспекта)
+\end{proof}
+
+\begin{definition}
+  Семейство $D_3$ называют \textit{группой движений} в $\mathbb{E}^3$.
+\end{definition}
+
+\subsection{Подгруппы движений}
+
+\begin{definition}
+  Если матрица $P(t)$ не зависит от времени, то движение твёрдого тела называют
+  \textit{поступательным}.
+\end{definition}
+
+Каждому перемещению твёрдого тела за время от $t_0$ до $t$ в некотором
+поступательном движении соответствует некоторое множество биекций
+$D : \mathbb{E}^3 \to \mathbb{E}^3$, определяемых формулами:
+\begin{equation*}
+  x_j^\tau(t) = a_j(t) + \sum_{k=1}^{3} p_{kj}^0 y_k^\tau, \quad j = 1,2,3,
+\end{equation*}
+где $P(t_0) = P^0 = (p_{kj}^0)$.
+
+% Обозначим множество всевозможных таких биекций 
+
+\begin{theorem}
+  Множество $D_3^{\text{(п)}}$ всех таких биекций
+\end{theorem}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
+\pagebreak
+
+\section{Поступательное движение твёрдого тела}
+
+Под \textit{поступательным} движением абсолютно твёрдого тела понимают такое его
+движение, при котором прямая, проведённая через любые две точки тела и жёстко с
+ним связанная, остаётся во всё время движения \textit{параллельной самой себе}.
+
+Точки \textit{поступательно} движущегося тела могут описывать \textit{любые
+криволинейные траектории}, но движение тела сохраняет свой
+\textit{поступательный} характер.
+
+\begin{theorem}
+  При поступательном движении твёрдого тела все его точки описывают одинаковые
+  траектории и в любой момент времени имеют одинаковые скорости и ускорения.
+\end{theorem}
+
+\begin{proof}
+  Определим положение любой точки $M$ твёрдого тела вектор-радиусом $\pvec{r}$,
+  проведённым из некоторой точки $O'$, также принадлежащей телу
+  (\textcolor{red}{TODO:} ссылка на рисунок). Если движение поступательное, то
+  по определению вектор $\pvec{r}$ остаётся параллельным самому себе. Величина
+  вектора $\pvec{r}$ ($r' = O'M$) не изменяется, так как тело твёрдое. Итак,
+  $\pvec{r}$ является постоянным вектором.
+
+  Обозначим через $\vec{r}_0$ вектор-радиус точки $O'$ относительно некоторой
+  неподвижной точки $O$. Равенство
+  \begin{equation}
+    \label{eq:trajectory_translational}
+    \vec{r} = \vec{r}_0 + \pvec{r}
+  \end{equation}
+  показывает, что траектория точки $M$ получается из траектории точки $O'$ путём
+  параллельного перенесения её на постоянный по величине и направлению вектор.
+  Следовательно, \textit{траектории точек твёрдого тела, движущегося
+  поступательно, представляют собой конгруэнтные кривые}, получающиеся друг из
+  друга путём параллельного переноса.
+
+  Дифференцируя обе части формулы \ref{eq:trajectory_translational} по времени и
+  замечая, что производная постоянного вектора $\pvec{r}$ равна нулю, получим
+  \begin{equation*}
+    \dt[\vec{r}] = \dt[\vec{r}_0],
+  \end{equation*}
+  или, вспоминая определение вектора скорости,
+  \begin{equation}
+    \label{eq:velocity_translational}
+    \vec{v} = \vec{v}_0,
+  \end{equation}
+  то есть \textit{скорости всех точек твёрдого тела, движущегося поступательно,
+  в любой момент времени друг другу равны как по величине, так и по
+  направлению}.
+
+  Дифференцируя обе части \ref{eq:velocity_translational} ещё раз по времени,
+  получаем
+  \begin{equation}
+    \label{eq:acceleration_translational}
+    \vec{w} = \vec{w}_0,
+  \end{equation}
+  то есть \textit{ускорения всех точек поступательно движущегося твёрдого тела в
+  любой момент времени одинаковы}.
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Вращение твёрдого тела вокруг неподвижной оси}
+
+\subsection{Определение. Основные понятия}
+
+Рассмотрим движение твёрдого тела, при котором две точки его остаются
+неподвижными; такое движение представляет собой вращение тела вокруг проходящей
+через неподвижные точки прямой, называемой \textit{осью вращения}.
+
+Пусть ось вращения тела совпадает с осью $Oz$. Чтобы определить положение тела,
+проведём через ось $Oz$ две полуплоскости: подвижную $Q$, твёрдо связанную с
+вращающимся телом, и неподвижную $P$ (\textcolor{red}{TODO:} картинка). Заданием
+двугранного угла $\varphi$ между этими полуплоскостями положение твёрдого тела
+вполне определяется.
+
+Движение твёрдого тела, имеющего неподвижную ось вращения, определяется заданием
+угла $\varphi$ в функции времени:
+\begin{equation}
+  \varphi = f(t).
+\end{equation}
+Это уравнение называется \textit{уравнением вращения} тела.
+
+Величина, учитывающая быстроту изменения угла поворота со временем, называется
+\textit{угловой скоростью тела}.
+
+Условимся обозначать абсолютное значение некоторой величины как $a$, а её
+алгебраическое значение как $\tilde{a}$. Конечно, $\abs{\tilde{a}} = a$. В
+случае угловой скорости будем использовать соответственно обозначения $\omega$
+и $\tilde{\omega}$.
+
+За меру быстроты изменения угла поворота с течением времени примем отношение
+приращения угла $\Delta \varphi$ к промежутку времени $\Delta t$, в течение
+которого это приращение произошло. Такое отношение назовём \textit{средней
+угловой скоростью} за промежуток времени $\Delta t$ и обозначим
+\begin{equation*}
+  \tilde{\omega}_{\text{ср}} = \deltader{\varphi}{t}.
+\end{equation*}
+Желая перейти от средней угловой скорости за некоторый промежуток времени к
+\textit{истинной угловой скорости в данный момент}, будем стремить интервал
+времени $\Delta t$ к нулю. По определению производной угловая скорость
+$\tilde{\omega}$ в данный момент будет равна
+\begin{equation}
+  \label{eq:angular_velocity}
+  \tilde{\omega} = \lim_{\Delta t \to 0} \tilde{\omega}_{\text{ср}} =
+    \lim_{\Delta t \to 0} \deltader{\varphi}{t} = \dt[\varphi] = \dot{\varphi}.
+\end{equation}
+
+Аналогично вводится понятие \textit{среднего углового ускорения} за промежуток
+времени $\Delta t$:
+\begin{equation*}
+  \tilde{\varepsilon}_{\text{ср}} = \deltader{\tilde{\omega}}{t}
+\end{equation*}
+и \textit{углового ускорения в данный момент}:
+\begin{equation}
+  \label{eq:angular_acceleration}
+  \tilde{\varepsilon} = \lim_{\Delta t \to 0} \tilde{\varepsilon}_{\text{ср}} =
+    \lim_{\Delta t \to 0} \deltader{\tilde{\omega}}{t} = \dt[\tilde{\omega}] =
+    \dot{\tilde{\omega}}.
+\end{equation}
+
+Из формулы \ref{eq:angular_velocity} будет также следовать
+\begin{equation*}
+  \tilde{\varepsilon} = \ddt[\varphi] = \ddot{\varphi}.
+\end{equation*}
+
+% TODO: скалярные формулы скорости и ускорения -//-
+
+\subsection{Векторные формулы скорости и ускорения точек твёрдого тела,
+вращающегося вокруг неподвижной оси}
+
+Введём в рассмотрение \textit{вектор угловой скорости}, который будем обозначать
+через $\vec{\omega}$.
+
+Величиной вектора угловой скорости $\vec{\omega}$ является
+\begin{equation*}
+  \omega = \abs{\dt[\varphi]} = \dot{\varphi}.
+\end{equation*}
+
+Условимся направлять вектор угловой скорости $\vec{\omega}$ по оси вращения так,
+чтобы наблюдатель, смотрящий с конца вектора $\vec{\omega}$, видел вращение тела
+в положительном направлении, то есть против часовой стрелки при правой системе
+координат.
+
+Откладывая вектор $\vec{\omega}$ по оси вращения, можно определить вектор
+линейной скорости $\vec{v}$ любой точки $M$ как векторное произведение вектора
+угловой скорости на вектор-радиус этой точки относительно любой точки оси
+вращения (\textit{формула Эйлера}) (\textcolor{red}{TODO:} картинка):
+\begin{equation}
+  \label{eq:euler_formula}
+  \vec{v} = \crossprod{\vec{\omega}}{\vec{r}}.
+\end{equation}
+
+В самом деле, величина векторного произведения \ref{eq:euler_formula} равна
+\begin{equation*}
+  v = \omega r \sin \alpha = \omega h,
+\end{equation*}
+то есть величине скорости; пусть, далее, принята правая система осей, тогда при
+показанном стрелкой направлении вращения вектор угловой скорости должен быть
+отложен по оси вращения вверх (\textcolor{red}{TODO:} картинка 140). Векторное
+произведение $\vec{\omega} \times \vec{r}$ перпендикулярно к $\vec{\omega}$ и
+$\vec{r}$ и направлено так, чтобы, смотря с его конца, видеть поворот от
+$\vec{\omega}$ к $\vec{r}$ на наименьший угол против часовой стрелки; но это и
+будет направление скорости $\vec{v}$.
+
+Выведем теперь векторную формулу ускорения. Для этого возьмём векторную
+производную по времени от обеих частей равенства \ref{eq:euler_formula}; будем
+иметь
+\begin{equation}
+  \label{eq:acceleration_rotation_verbose}
+  \vec{w} = \dt[\vec{v}] = \dt (\crossprod{\vec{\omega}}{\vec{r}}) =
+    \crossprod{\dt[\vec{\omega}]}{\vec{r}} +
+    \crossprod{\vec{\omega}}{\dt[\vec{r}]}.
+\end{equation}
+
+Производную по времени от вектора угловой скорости $\vec{\omega}$ назовём
+\textit{вектором углового ускорения}. Называя вектор углового ускорения
+$\vec{\varepsilon}$ и замечая, что по определению скорости $\dot{\vec{r}} =
+\vec{v}$, приведём \ref{eq:acceleration_rotation_verbose} к виду
+\begin{equation}
+  \label{eq:rotation:acceleration}
+  \vec{w} = \crossprod{\vec{\varepsilon}}{\vec{r}} +
+    \crossprod{\vec{\omega}}{\vec{v}}.
+\end{equation}
+
+Первое слагаемое, $\crossprod{\vec{\omega}}{\vec{r}}$, представляет собой
+\textit{вращательную} составляющую ускорения. Действительно, оно равно по
+величине
+\begin{equation*}
+  w^{\text{(в)}} = \varepsilon r \sin(\widehat{\vec{\varepsilon}, \vec{r}})
+    = \varepsilon h,
+\end{equation*}
+а по направлению совпадает со скоростью $\vec{v} =
+\crossprod{\vec{\omega}}{\vec{r}}$, если векторы $\vec{\omega}$ и
+$\vec{\varepsilon}$ сонаправлены, и противоположно скорости, если $\vec{\omega}$
+и $\vec{\varepsilon}$ разнонаправлены.
+
+Второе слагаемое в формуле \ref{eq:rotation:acceleration} представляет собой
+\textit{осестремительное} ускорение. Его величина равна
+\begin{equation*}
+  w^{\text{(ос)}} = \omega v \sin(\widehat{\vec{\omega}, \vec{v}})
+    = \omega^2 h,
+\end{equation*}
+так как векторы $\omega$ и $v$ взаимно перпендикулярны, а $v = \omega h$.
+
+Направление векторного произведения $\crossprod{\vec{\omega}}{\vec{v}}$
+перпендикулярно к оси вращения (вектору $\vec{\omega}$) и скорости $\vec{v}$, то
+есть идёт по радиусу круга, описываемого точкой, к его центру. Итак,
+действительно,
+\begin{equation}
+  \vec{w}^{\text{(в)}} = \crossprod{\vec{\varepsilon}}{\vec{r}}, \quad
+    \vec{w}^{\text{(ос)}} = \crossprod{\vec{\omega}}{\vec{v}}.
+\end{equation}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Плоское движение твёрдого тела. Преобразование координат}
+
+\begin{definition}
+  Движение, при котором все точки твёрдого тела, расположенные в плоскостях,
+  параллельных некоторой неподвижной плоскости, во всё время движения остаются в
+  тех же плоскостях, называется \textit{плоским движением}.
+
+  Если разбить мысленно тело на плоские сечения, параллельные заданной
+  плоскости, то эти сечения будут оставаться каждое в своей плоскости.
+
+  % TODO
+  (\textcolor{red}{TODO:} картинка (книга, страница 142))
+\end{definition}
+
+Пусть тело $A$ совершает действие, параллельное плоскости $\Pi$. Проведём
+мысленно в теле ряд плоскостей $\Pi', \Pi'', \dots$, параллельных $\Pi$. Тело
+разобьётся на ряд плоских фигур $S', S'', \dots$. Все точки, принадлежащие
+какой-нибудь фигуре, движутся в плоскости фигуры, и, следовательно, фигура в
+целом движется в своей плоскости. Движение одной такой плоской фигуры вполне
+определяет движение всего твёрдого тела, так как плоскости, которыми мы разбили
+твёрдое тело, друг с другом неизменно связаны и не могут двигаться друг по
+отношению к другу.
+
+Если мы возьмём в какой-нибудь фигуре $S'$ точку $M'$ и восставим в ней
+перпендикуляр к плоскости фигуры $S'$, то точки $M'$ и $M''$ фигур $S'$ и $S''$,
+лежащие на этом перпендикуляре, будут иметь одинаковое движение, то есть будут
+описывать одинаковые траектории, иметь одинаковые скорости, одинаковые
+ускорения.
+
+Таким образом, можно значительно упростить изучение плоского движения твёрдого
+тела --- достаточно изучить движение одной плоской фигуры в её плоскости.
+
+Возьмём две системы осей в плоскости движения фигуры: одну систему $Oxy$ ---
+неподвижную, другую --- $O'x'y'$, неизменно связанную с движущейся фигурой
+(\textcolor{red}{TODO:} картинка (книга, страница 228)). Положение точки $M$
+фигуры в неподвижной плоскости будем определять вектор-радиусом $\vec{r}$,
+проведённым из начала $O$ неподвижной системы осей; выбор рассматриваемой точки
+фигуры определяется указанием вектора $\pvec{r}$, проведённого из начала $O'$
+подвижной системы. Вектор-радиус начала $O'$ относительно $O$ обозначим через
+$\vec{r}_0$. Проекциями вектора $\vec{r}$ на оси $x$ и $y$ будут декартовы
+координаты $x$ и $y$ в неподвижной системе осей; при движении фигуры координаты
+$x$ и $y$ изменяются со временем; в противоположность этому проекции вектора
+$\pvec{r}$ на подвижные оси, то есть декартовы координаты $x'$ и $y'$ точки $M$
+в системе подвижных осей, остаются постоянными, как расстояния точек твёрдой
+фигуры до проведённых на ней прямых.
+
+Всякой точке фигуры соответствует определённая пара чисел $x'$ и $y'$. В
+частности, точке $O'$, началу подвижной системы, соответствуют значения $x'$ и
+$y'$, равные нулю; значения координат $x$ и $y$ для этой точки обозначим через
+$x_0$ и $y_0$ (проекции вектора $\vec{r}_0$).
+
+Чтобы определить положение повдижной системы осей относительно неподвижной,
+достаточно задать:
+\begin{enumerate}
+  \item положение начала $O'$, то есть вектор-радиус $\vec{r}_0$;
+  \item угол одной из подвижных осей с одной из неподвижных, например угол
+    $\varphi$ оси $x$ с осью $x'$.
+\end{enumerate}
+% TODO
+(\textcolor{red}{TODO:} последнее требует некоторого уточнения)
+
+\begin{definition}
+  Начало $O'$ подвижной системы называется $полюсом$; угол $\varphi$ будет в
+  таком случае \textit{углом поворота} вокруг полюса.
+\end{definition}
+
+Плоское движение твёрдого тела определяется:
+\begin{enumerate}
+  \item уравнениями движения полюса
+    \begin{equation}
+      x_0 = f_1(t), \quad y_0 = f_2(t);
+    \end{equation}
+  \item уравнением вращения фигуры вокруг полюса
+    \begin{equation}
+      \varphi = \varphi(t).
+    \end{equation}
+\end{enumerate}
+
+Чтобы получить уравнения движения любой точки плоской фигуры, спроектируем на
+неподвижные оси $x$ и $y$ очевидное геометрическое равенство
+\begin{equation*}
+  \vec{r} = \vec{r}_0 + \pvec{r}.
+\end{equation*}
+Получим
+\begin{equation}
+  \label{eq:flat_point_motion}
+  \begin{gathered}
+    x = x_0 + x' \cos\varphi - y' \sin\varphi, \\
+    y = y_0 + y' \sin\varphi + y' \cos\varphi.
+  \end{gathered}
+\end{equation}
+
+Уравнения \ref{eq:flat_point_motion} представляют собой уравнения движения точки
+$M$ или, что то же самое, параметрические уравнения её траектории.
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Две геометрические теоремы о плоском движении}
+
+\begin{theorem}
+  Всякое перемещение плоской фигуры в своей плоскости, а следовательно, и всякое
+  плоское перемещение твёрдого тела можно себе представить как совокупность двух
+  перемещений:
+  \begin{enumerate}
+    \item поступательного перемещения, зависящего от выбора полюса, и
+    \item вращательного перемещения вокруг полюса;
+  \end{enumerate}
+  угол и направление поворота от выбора полюса не зависят.
+\end{theorem}
+
+\begin{proof}
+  Положение плоской фигуры может быть задано положением двух её точек $O'$ и
+  $M$ или положением отрезка $O'M$
+  % TODO
+  (\textcolor{red}{TODO:} рисунок 149, стр. 234)
+
+  Пусть фигура $O'M$ переместилась из положения $I$ в положение $II$. Разобьём
+  переход на две части. Сначала переместим фигуру поступательно в положение
+  $I'$, причём все точки её получат перемещения, геометрические равные
+  перемещению $\vv{O'O_1}$ полюса $O'$, а затем повернём фигуру на $\angle M'O_1
+  M_1$ вокруг оси, проходящей через точку $O_1$ перпендикулярно к плоскости
+  фигуры.
+
+  Заметим, что вектор поступательного перемещения зависит от выбора полюса, а
+  угол поворота не зависит от этого выбора. В самом деле, тот же переход из
+  положения $I$ в положение $II$ можно осуществить, приняв за полюс точку $M$ и
+  переместив сначала фигуру в положение $II'$ (\textcolor{red}{TODO:} картинка),
+  причём все точки фигуры получат перемещения, геометрически равные
+  $\vv{M M_1}$ и отличные от $\vv{O' O_1}$, а затем повернув фигуру на
+  $\angle O'' M_1 O_1$ вокруг оси, проходящей через $M_1$. Но по свойству
+  поступательного перемещения $\vv{O'' M_1}$ параллелен $\vv{O' M}$ и точно так
+  же 
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lourie}
+\end{enumerate}
+
+\pagebreak
+
+
+\section{Формула Эйлера. Следствие}
+\pagebreak
+
+\section{Центр скоростей. Центроиды. Теорема Пуансо}
+\pagebreak
+
+\section{Ускорение точек твёрдого тела в плоском движении}
+\pagebreak
+
+\section{Задание движения твёрдого тела через углы Эйлера}
+\pagebreak
+
+\section{Две геометрические теоремы о движении твёрдого тела вокруг неподвижной
+точки}
+\pagebreak
+
+\section{Проекции угловой скорости тела с неподвижной точкой}
+\pagebreak
+
+\section{Ускорение точек тела с неподвижной точкой}
+\pagebreak
+
+\section{Скорость точек твёрдого тела в общем случае}
+\pagebreak
+
+\section{Ускорение точек твёрдого тела в общем случае}
+\pagebreak
+
+\section{Сложное движение точки, основные понятия}
+\pagebreak
+
+\section{Теорема сложения скоростей в сложном движении точки}
+\pagebreak
+
+\section{Теорема сложения ускорений в сложном движении точки}
+\pagebreak
+
+\section{Теорема о сложении угловых скоростей твёрдого тела}
+\pagebreak
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
