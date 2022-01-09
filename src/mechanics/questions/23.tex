@@ -1,2 +1,144 @@
 \section{Скорость точек твёрдого тела в общем случае}
 
+Пусть $(O', \pvec{i}, \pvec{j}, \pvec{k})$ --- репер, жёстко связанный с твёрдым
+телом (подвижный репер), а $(O, \vec{i}, \vec{j}, \vec{k})$ --- неподвижный
+репер. Тогда если $(x_0, y_0, z_0)$ --- координаты точки $O'$ в неподвижном
+репере, то связь между координатами произвольной точки $M$ тела в неподвижном и
+подвижном реперах следующая:
+\begin{equation}
+  \left(
+  \begin{array}{c}
+    x \\
+    y \\
+    z
+  \end{array}
+  \right)
+  =
+  \left(
+  \begin{array}{c}
+    x_0 \\
+    y_0 \\
+    z_0
+  \end{array}
+  \right)
+  +
+  \left(
+  \begin{array}{c c c}
+    \alpha_{11} & \alpha_{21} & \alpha_{31} \\
+    \alpha_{12} & \alpha_{22} & \alpha_{32} \\
+    \alpha_{13} & \alpha_{23} & \alpha_{33}
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{c}
+    x' \\
+    y' \\
+    z'
+  \end{array}
+  \right).
+\end{equation}
+
+Как видим, перемещение $\Delta \vec{r}$ точки $M$ складывается из перемещения
+$\Delta \vec{r}_{O'}$ точки $O'$ и вращательного перемещения $\Delta(\vec{r} -
+\vec{r}_{O'})$ точки $M$ при повороте тела вокруг $O'$, то есть
+\begin{equation}
+  \label{eq:general_point_movement_delta}
+  \Delta \vec{r} = \Delta \vec{r}_{O'} + \Delta(\vec{r} - \vec{r}_{O'}),
+\end{equation}
+где
+\begin{equation*}
+  \Delta \vec{r}_{O'} = \vec{v}_{O'} \Delta t + \vec{o}(\Delta t)
+    \mbox{~при~} \Delta t \to 0
+\end{equation*}
+и
+\begin{equation*}
+  \Delta(\vec{r} - \vec{r}_{O'}) = 
+    \crossprod
+      {\vv{\Delta \varphi_{O'}}}
+      {(\vec{r} - \vec{r}_{O'})}
+    \mbox{~при~} \Delta t \to 0.
+\end{equation*}
+
+Разделив равенство \ref{eq:general_point_movement_delta} на $\Delta t$ и перейдя
+при $\Delta t \to 0$ к пределу, получим:
+\begin{equation}
+  \label{eq:general_point_velocity_temp}
+  \vec{v} = \vec{v}_{O'} +
+    \crossprod
+      {\vec{\omega}_{O'}}
+      {(\vec{r} - \vec{r}_{O'})}.
+\end{equation}
+Здесь
+\begin{equation*}
+  \vec{\omega}_{O'} = \lim_{\Delta t \to 0}
+    \paren{
+      \frac{\vv{\Delta \varphi_{O'}}}{\Delta t}
+    }
+\end{equation*}
+означает мгновенную угловую скорость вращения тела вокруг точки $O'$, а
+$\vec{v}$ и $\vec{v}_{O'}$ --- скорости точек $M$ и $O'$.
+
+\begin{theorem}
+  \label{theorem:general_velocity_pole_independence}
+  Вектор $\vec{\omega}_{O'}$ не зависит от выбора полюса $O'$.
+\end{theorem}
+
+\begin{proof}
+  Пусть $B$ --- другой полюс, тогда
+  \begin{equation*}
+    \begin{aligned}
+      \vec{v} &= \vec{v}_B +
+        \crossprod{\vec{\omega}_B}{(\vec{r} - \vec{r}_B)}, \\
+      \vec{v}_B &= \vec{v}_{O'} +
+        \crossprod{\vec{\omega}_{O'}}{(\vec{r}_B - \vec{r}_{O'})},
+    \end{aligned}
+  \end{equation*}
+  откуда получаем
+  \begin{equation}
+    \label{eq:double_pole_velocity}
+    \vec{v} = \vec{v}_{O'}
+        + \crossprod{\vec{\omega}_{O'}}{(\vec{r}_B - \vec{r}_{O'})}
+        + \crossprod{\vec{\omega}_B}{(\vec{r} - \vec{r}_B)}.
+  \end{equation}
+
+  Вычитая из равенства \ref{eq:general_point_velocity_temp} равенство
+  \ref{eq:double_pole_velocity}, получаем
+  \begin{equation*}
+    \crossprod{\vec{\omega}_{O'}}{(\vec{r} - \vec{r}_{O'})}
+      - \crossprod{\vec{\omega}_{O'}}{(\vec{r}_B - \vec{r}_{O'})}
+      - \crossprod{\vec{\omega}_B}{(\vec{r} - \vec{r}_B)} = \vec{0},
+  \end{equation*}
+  то есть
+  \begin{equation*}
+    \crossprod
+      {(\vec{\omega}_{O'} - \vec{\omega}_B)}
+      {(\vec{r} - \vec{r}_B)} = \vec{0}.
+  \end{equation*}
+
+  Так как это равенство истинно для любого $\vec{r}$, то $\vec{\omega}_{O'} =
+  \vec{\omega}_B$.
+\end{proof}
+
+Согласно теореме \ref{theorem:general_velocity_pole_independence} вектор
+$\vec{\omega}_{O'}$ можно обозначить просто $\vec{\omega}$ --- это
+\textit{угловая скорость твёрдого тела} в общем случае. Формула
+\ref{eq:general_point_velocity_temp} запишется в следующем виде:
+\begin{equation}
+  \label{eq:general_euler_formula}
+  \vec{v} = \vec{v}_{O'} +
+    \crossprod
+      {\vec{\omega}}
+      {(\vec{r} - \vec{r}_{O'})}.
+\end{equation}
+Эту формулу называют \textit{формулой Эйлера в общем случае}.
+
+\begin{corollary}
+  Проекции скоростей любых двух различных точек абсолютно твёрдого тела на
+  направление соединяющего их отрезка равны между собой.
+\end{corollary}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
