@@ -29,44 +29,12 @@
 \usepackage[backend=biber,citestyle=authortitle]{biblatex}
 \addbibresource{bib/mechanics.bib}
 
-\theoremstyle{definition}
-\newtheorem{definition}{Определение}[section]
-
-\theoremstyle{plain}
-\newtheorem{theorem}{Теорема}[section]
-\newtheorem{corollary}{Следствие}[theorem]
-
-\theoremstyle{remark}
-\newtheorem{remark}{Замечание}[section]
+\import{src/utils/}{theorem.tex}
+\import{src/utils/}{commands.tex}
+\import{src/utils/}{operators.tex}
 
 \numberwithin{equation}{section}
 \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
-
-\newcommand{\vv}[1]{\overrightarrow{#1}}
-
-\newcommand{\wvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}}
-\newcommand{\pvec}[1]{\wvec{#1}'}
-\newcommand{\ppvec}[1]{\wvec{#1}''}
-
-\newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-
-\newcommand{\paren}[1]{\left( #1 \right)}
-
-\newcommand{\dotprod}[2]{#1 \cdot #2}
-\newcommand{\crossprod}[2]{#1 \times #2}
-
-\newcommand{\der}[2][]{\frac{d #1}{d #2}}
-\newcommand{\sder}[2][]{\frac{d^2 #1}{d #2^2}}
-\newcommand{\deltader}[2]{\frac{\Delta #1}{\Delta #2}}
-\newcommand{\parder}[2][]{\frac{\partial #1}{\partial #2}}
-\newcommand{\pparder}[3][]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
-
-\newcommand{\dt}[1][]{\der[#1]{t}}
-\newcommand{\ddt}[1][]{\sder[#1]{t}}
-
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\proj}{proj}
 
 \title{Билеты по теоретической механике}
 \author{В.~Шаршуков}
