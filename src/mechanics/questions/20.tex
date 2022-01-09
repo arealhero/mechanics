@@ -1,3 +1,178 @@
 \section{Две геометрические теоремы о движении твёрдого тела вокруг неподвижной
 точки}
 
+\begin{definition}
+  Перемещение твёрдого тела такое, что начальное и конечное положения кажддой
+  его точки совпадают, называют \textit{нулевым}.
+\end{definition}
+
+\begin{theorem}[Эйлера-Даламбера]
+  \label{theorem:euler_d'alembert}
+  Для любого ненулевого перемещения $\Pi$ твёрдого тела вокруг неподвижной точки
+  существует единственная прямая $l$ такая, что перемещение $\Pi$ можно
+  представить как перемещение в результате поворота этого тела вокруг этой оси
+  на некоторый угол $\alpha$.
+\end{theorem}
+
+\begin{proof}
+  Пусть $O$ --- неподвижная точка тела. Будем считать, что в начальном положении
+  подвижный и неподвижный реперы $(O, \vec{i}, \vec{j}, \vec{k})$ и $(O,
+  \vec{e}_{x'}, \vec{e}_{y'}, \vec{e}_{z'})$ совпадают. Пусть $(x_1', y_1',
+  z_1')$ и $(x_2', y_2', z_2')$ --- координаты в неподвижном репере произвольной
+  точки $M$ твёрдого тела (пространства, связанного с этим телом) в его
+  начальном и конечном положениях соответственно, а $(x,y,z)$ --- координаты
+  этой точки в подвижном репере. Используя формулы \ref{eq:coords_transform},
+  получаем
+  \begin{equation*}
+    \begin{aligned}
+      \left(
+      \begin{array}{c}
+        x_1' \\
+        y_1' \\
+        z_1'
+      \end{array}
+      \right)
+      &= I \cdot \left(
+      \begin{array}{c}
+        x \\
+        y \\
+        z \\
+      \end{array}
+      \right), \\
+      \left(
+      \begin{array}{c}
+        x_2' \\
+        y_2' \\
+        z_2'
+      \end{array}
+      \right)
+      &= P \cdot \left(
+      \begin{array}{c}
+        x \\
+        y \\
+        z \\
+      \end{array}
+      \right),
+    \end{aligned}
+  \end{equation*}
+  где $I$ --- единичная матрица, $P$ --- ортогональная, $\det P = 1$ и
+  $P \neq I$.
+
+  Необходимо показать, что множество точек $M \sim (x,y,z)$, удовлетворяющих
+  равенству $(x_1', y_1', z_1') = (x_2', y_2', z_2')$, то есть равенству
+  \begin{equation*}
+    (P - I) \cdot \left(
+    \begin{array}{c}
+      x \\
+      y \\
+      z
+    \end{array}
+    \right) = \left(
+    \begin{array}{c}
+      0 \\
+      0 \\
+      0
+    \end{array}
+    \right),
+  \end{equation*}
+  суть множество всех точек некоторой прямой, проходящей через $(0,0,0)$.
+
+  Эту задачу можно переформулировать так: мы должны доказать, что среди
+  собственных значений $\lambda$ матрицы $P$ есть значение $\lambda_1 = 1$, и
+  ему соответствует одномерное подпространство собственных векторов. Чтобы
+  сделать это, мы покажем, что $\lambda_1 = 1$ является корнем
+  характеристического полинома $d(\lambda) = \det \paren{P - \lambda I}$ и что
+  кратность этого корня равна единице.
+
+  Действительно, из цепочки равенств
+  \begin{equation*}
+    \begin{aligned}
+      d(1) &= \det(P - I) \\
+      &= \det(P^T - I^T) \\
+      &= \det(P^{-1} - I) \\
+      &= \det(P \cdot (P^{-1} - I)) \\
+      &= \det(I - P) \\
+      &= \det(-(P - I)) \\
+      &= (-1)^3 \det(P - I) \\
+      &= -d(1)
+    \end{aligned}
+  \end{equation*}
+  следует, что величина $\lambda_1 = 1$ является корнем полинома $d(\lambda)$.
+
+  % TODO
+  (\textcolor{red}{TODO:} доказать, что кратность $\lambda_1 = 1$ равна единице)
+\end{proof}
+
+\begin{definition}
+  Прямую $l$ называют \textit{осью вращения}.
+\end{definition}
+
+Пусть $M$ --- произвольная точка твёрдого тела, движущегося вокруг неподвижной
+точки $O$, а $\vec{r}(t)$ и $\vec{r}(t + \Delta t)$ --- вектор-радиусы этой
+точки в моменты времени $t$ и $t + \Delta t$. Вектор
+\begin{equation*}
+  \Delta \vec{r} = \vec{r}(t + \Delta t) - \vec{r}(t)
+\end{equation*}
+соответствует перемещению точки $M$ за время от $t$ до $t + \Delta t$. В
+соответствии с теоремой \ref{theorem:euler_d'alembert}, его можно вычислить как
+перемещение при вращении вокруг некоторой оси на угол $\vv{\Delta \varphi}$
+(этот вектор направлен вдоль упомянутой оси согласно определению угла поворота).
+Определяя скорость $\vec{v}$ как предел при $\Delta t \to 0$ отношения малого
+перемещения $\Delta \vec{r}$ к промежутку времени $\Delta t$, найдём
+\begin{equation*}
+  \vec{v} = \lim_{\Delta t \to 0} \frac{\Delta \vec{r}}{\Delta t} = \lim_{\Delta
+    t \to 0} \paren{\crossprod{\frac{\vv{\Delta \varphi}}{\Delta t}}{\vec{r}}}
+    = \crossprod{\paren{\lim_{\Delta t \to 0} \frac{\vv{\Delta \varphi}}{\Delta
+    t}}}{\vec{r}}.
+\end{equation*}
+
+Вводя \textit{вектор мгновенной угловой скорости}
+\begin{equation*}
+  \vec{\omega} = \lim_{\Delta t \to 0} \frac{\vv{\Delta \varphi}}{\Delta t},
+\end{equation*}
+получим
+\begin{equation*}
+  \vec{v} = \crossprod{\vec{\omega}}{\vec{r}}.
+\end{equation*}
+
+\begin{definition}
+  Прямую, проходящую через точку $O$ и параллельную вектору мгновенной угловой
+  скорости $\vec{\omega}$, называют \textit{мгновенной осью вращения твёрдого
+  тела в момент времени $t$}.
+\end{definition}
+
+\begin{theorem}
+  Угловую скорость твёрдого тела с неподвижной точкой можно вычислить по формуле
+  \begin{equation}
+    \vec{\omega} = \dot{\psi} \vec{k} + \dot{\theta} \vec{n} + \dot{\varphi}
+      \pvec{k}.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} доказать (в книге есть))
+\end{proof}
+
+\begin{definition}
+  Геометрическое место точек мгновенных осей вращения в неподвижном и подвижном
+  реперах называют соответственно \textit{неподвижным} и \textit{подвижным
+  аксоидом}.
+\end{definition}
+
+\begin{theorem}[Пуансо]
+  При движении твёрдого тела, имеющего неподвижную точку, подвижный аксоид
+  катится без скольжения по неподвижному.
+\end{theorem}
+
+\begin{proof}
+  % TODO
+  (\textcolor{red}{TODO:} доказать (в книге есть))
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+  \item \cite{lourie}
+\end{enumerate}
+
