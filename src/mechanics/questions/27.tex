@@ -1,2 +1,82 @@
 \section{Теорема сложения ускорений в сложном движении точки}
 
+\begin{definition}
+  Вектор
+  \begin{equation*}
+    \xvec{w}_c = 2 \crossprod{\xvec{\omega}}{\xvec{v}_r}
+  \end{equation*}
+  называют \textit{ускорением Кориолиса} (\textit{вращательным ускорением})
+  точки в её сложном движении.
+\end{definition}
+
+\begin{theorem}[Формула Кориолиса сложения ускорений]
+  \label{theorem:coriolis_formula}
+  Абсолютное, переносное, относительное и вращательное ускорения в сложном
+  движении точки связаны равенством
+  \begin{equation}
+    \label{eq:acceleration_summation}
+    \xvec{w} = \xvec{w}_e + \xvec{w}_r + \xvec{w}_c.
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Дифференцируя формулу сложения скоростей \ref{eq:velocity_summation}, получаем
+  \begin{equation}
+    \label{eq:velocity_summation_derivative}
+    \xvec{w} = \dt[\xvec{v}] = \dt[\xvec{v}_e] + \dt[\xvec{v}_r].
+  \end{equation}
+
+  Из формулы относительной производной \ref{eq:relative_derivative} следует, что
+  \begin{equation*}
+    \begin{aligned}
+      \dt[\xvec{v}_r] &= \frac{d' \xvec{v}_r}{dt} +
+        \crossprod{\xvec{\omega}}{\xvec{v}_r} \\
+      &= \xvec{w}_r + \crossprod{\xvec{\omega}}{\xvec{v}_r}.
+    \end{aligned}
+  \end{equation*}
+
+  Пусть $\xvec{\varepsilon} = \dt[\xvec{w}]$ --- угловое ускорение подвижного
+  репера. По формуле Эйлера
+  \begin{equation*}
+    \xvec{v}_e = \xvec{v}_0
+      + \crossprod
+        {\xvec{\omega}}
+        {(\xvec{r} - \xvec{r}_0)},
+  \end{equation*}
+  поэтому, используя формулу $\xvec{v} = \xvec{v}_e + \xvec{v}_r$, приходим к
+  равенствам
+  \begin{equation*}
+    \begin{aligned}
+      \dt[\xvec{v}_e] &= \xvec{w}_0
+        + \crossprod{\xvec{\varepsilon}}{(\xvec{r} - \xvec{r}_0)}
+        + \crossprod{\xvec{\omega}}{(\xvec{v} - \xvec{v}_0)} \\
+      &= \xvec{w}_0
+        + \crossprod{\xvec{\varepsilon}}{(\xvec{r} - \xvec{r}_0)}
+        + \crossprod{\xvec{\omega}}{(\xvec{v}_e - \xvec{v}_0)}
+        + \crossprod{\xvec{\omega}}{\xvec{v}_r}.
+    \end{aligned}
+  \end{equation*}
+
+  Из формулы \ref{eq:general_acceleration_temp} следует, что
+  \begin{equation*}
+    \dt[\xvec{v}_e] = \xvec{w}_e + \crossprod{\xvec{\omega}}{\xvec{v}_r}.
+  \end{equation*}
+
+  Подставляя полученные равенства в формулу
+  \ref{eq:velocity_summation_derivative}, окончательно получаем
+  \begin{equation*}
+    \begin{aligned}
+      \xvec{w} &= \dt[\xvec{v}_e] + \dt[\xvec{v}_r] \\
+      &= \xvec{w}_e + \crossprod{\xvec{\omega}}{\xvec{v}_r}
+        + \xvec{w}_r + \crossprod{\xvec{\omega}}{\xvec{v}_r} \\
+      &= \xvec{w}_e + \xvec{w}_r + 2 \crossprod{\xvec{\omega}}{\xvec{v}_r} \\
+      &= \xvec{w}_e + \xvec{w}_r + \xvec{w}_c.
+    \end{aligned}
+  \end{equation*}
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
