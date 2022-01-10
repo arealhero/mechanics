@@ -1,2 +1,33 @@
 \section{Теорема сложения скоростей в сложном движении точки}
 
+\begin{theorem}[Формула сложения скоростей]
+  Абсолютная, переносная и относительная скорости движения точки связаны
+  равенством
+  \begin{equation}
+    \xvec{v} = \xvec{v}_e + \xvec{v}_r
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Так как $\xvec{r} = \xvec{r}_0 + \xvec{r}'$, то, применяя формулу
+  относительной производной \ref{eq:relative_derivative}, получаем
+  \begin{equation*}
+    \xvec{v} = \dt[\xvec{r}] = \xvec{v}_0
+      + \crossprod{\xvec{\omega}}{\xvec{r}'}
+      + \frac{d' \xvec{r}}{dt}.
+  \end{equation*}
+
+  По формуле Эйлера скорость той точки $M'$ подвижного пространства, с которой в
+  данный момент $t$ совпадает движущаяся точка $M$, равна
+  \begin{equation*}
+    \xvec{v}_e = \xvec{v}_0 + \crossprod{\xvec{\omega}}{\xvec{r}'}.
+  \end{equation*}
+  Учитывая, что $\frac{d' \xvec{r}}{dt} = \xvec{v}_r$, получаем требуемое
+  равенство.
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
