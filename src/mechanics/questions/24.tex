@@ -1,2 +1,37 @@
 \section{Ускорение точек твёрдого тела в общем случае}
 
+% TODO
+(\textcolor{red}{TODO:} процесс дифференцирования)
+
+Дифференцируя формулу Эйлера \ref{eq:general_euler_formula}, получим
+\begin{equation}
+  \label{eq:general_acceleration_temp}
+  \vec{w} = \vec{w}_{O'}
+    + \crossprod{\vec{\varepsilon}}{(\vec{r} - \vec{r}_{O'})}
+    + \crossprod
+      {\vec{\omega}}
+      {(\crossprod{\vec{\omega}}{(\vec{r} - \vec{r}_{O'})})}.
+\end{equation}
+
+Первое слагаемое, $\vec{w}_{O'}$, определяет \textit{поступательное ускорение},
+равное ускорению полюса, а второе
+\begin{equation*}
+  \vec{w}^\text{(в)} = \crossprod{\vec{\varepsilon}}{(\vec{r} - \vec{r}_{O'})}
+\end{equation*}
+и третье
+\begin{equation*}
+  \vec{w}^\text{(ос)} =
+    \crossprod
+      {\vec{\omega}}
+      {(\crossprod{\vec{\omega}}{(\vec{r} - \vec{r}_{O'})})}
+\end{equation*}
+определяют \textit{вращательную} и \textit{осестремительную} составляющие
+ускорения вращения тела вокруг полюса. Численные величины уже были исследованы и
+выражаются формулами \ref{eq:immovable_point:rotational_acceleration_length} и
+\ref{eq:immovable_point:centripetal_acceleration_length}.
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
