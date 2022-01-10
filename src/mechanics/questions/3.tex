@@ -26,21 +26,22 @@
   \end{equation*}
   причём якобиан
   \begin{equation}
-    J(x) = \frac{D(q_1, \dots, q_n)}{D(x_1, \dots, x_n)}(x) = \det
+    J(\xvec{x}) = \frac{D(q_1, \dots, q_n)}{D(x_1, \dots, x_n)}(\xvec{x}) = \det
     \left(
     \begin{array}{c c c}
-      \diffp{q_1}{{x_1}}(x) & \dots & \diffp{q_n}{{x_1}}(x) \\
+      \diffp{q_1}{{x_1}}(\xvec{x}) & \dots & \diffp{q_n}{{x_1}}(\xvec{x}) \\
       \vdots & \ddots & \vdots \\
-      \diffp{q_1}{{x_n}}(x) & \dots & \diffp{q_n}{{x_n}}(x)
+      \diffp{q_1}{{x_n}}(\xvec{x}) & \dots & \diffp{q_n}{{x_n}}(\xvec{x})
     \end{array}
     \right)
   \end{equation}
-  отличен от нуля во всех точках области $x \in D$.
+  отличен от нуля во всех точках области $\xvec{x} \in D$.
 \end{definition}
 
 \begin{remark}
-  Отличие от нуля якобиана $J(x)$ при всех $x \in D$ гарантирует, что обратное
-  к $f(x)$ отображение $f^{-1}(q)$ также является гладким.
+  Отличие от нуля якобиана $J(\xvec{x})$ при всех $\xvec{x} \in D$ гарантирует,
+  что обратное к $f(\xvec{x})$ отображение $f^{-1}(\xvec{q})$ также является
+  гладким.
 \end{remark}
 
 \begin{definition}
@@ -49,8 +50,8 @@
 \end{definition}
 
 Таким образом, криволинейная система координат задаётся двумя гладкими взаимно
-однозначными отображениями $f(x)$ и $f^{-1}(q)$, устанавливающими гомеоморфизм
-между множествами $D$ и $G$.
+однозначными отображениями $f(\xvec{x})$ и $f^{-1}(\xvec{q})$, устанавливающими
+гомеоморфизм между множествами $D$ и $G$.
 
 \begin{definition}
   Гладкий гомеоморфизм $f : D \to G$ класса $C^r(D)$ называют
@@ -64,12 +65,12 @@
 
 \subsection{Замена координат}
 
-Пусть в области $D \subset \mathbb{R}^n$ две системы координат $q_1(x)$ и
-$q_2(x)$ заданы отображениями $f : D \to G_1 \subset \mathbb{R}^n$ и
-$g : D \to G_2 \subset \mathbb{R}^n$.
+Пусть в области $D \subset \mathbb{R}^n$ две системы координат
+$\xvec{q}_1(\xvec{x})$ и $\xvec{q}_2(\xvec{x})$ заданы отображениями
+$f : D \to G_1 \subset \mathbb{R}^n$ и $g : D \to G_2 \subset \mathbb{R}^n$.
 
 \begin{definition}
-  \textit{Заменой координат} $q_1$ на $q_2$ называется отображение
+  \textit{Заменой координат} $\xvec{q}_1$ на $\xvec{q}_2$ называется отображение
   $\psi : G_1 \to G_2$, задаваемое формулой $\psi = g \circ f^{-1}$.
 \end{definition}
 
