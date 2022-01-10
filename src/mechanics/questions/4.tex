@@ -32,11 +32,12 @@ Q = \{ \vec{q} \, | \, \vec{q} = \vec{q}(\vec{r}), \vec{r} \in D \}$.
 
 По определению, якобиан криволинейной системы координат отличен от нуля в
 каждой точке области определения $Q$. Векторы
-$\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+$\diffp{\vec{r}}{{q_1}},~\diffp{\vec{r}}{{q_2}},~\diffp{\vec{r}}{{q_3}}$
 составляют строки матрицы этого якобиана и поэтому не могут быть нулевыми.
 
 \begin{theorem}
-  Векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
+  Векторы
+  $\diffp{\vec{r}}{{q_1}},~\diffp{\vec{r}}{{q_2}},~\diffp{\vec{r}}{{q_3}}$
   являются касательными соответственно к линиям
   $\tilde{q}_1,~\tilde{q}_2,~\tilde{q}_3$ в точке $\vec{q}_0$.
 \end{theorem}
@@ -45,7 +46,7 @@ $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
   Для наглядности рассмотрим координатную кривую $\tilde{q}_1$. Эта кривая
   параметризуется переменной $q_i$ в точке $\vec{q}_0$. Положим
   $\vec{r} = \vec{r}(q_1, q_{20}, q_{30})$, тогда производая
-  $\parder[\vec{r}]{q_1}$ даст направление касательной к этой кривой в точке
+  $\diffp{\vec{r}}{{q_1}}$ даст направление касательной к этой кривой в точке
   $\vec{q}_0$.
 \end{proof}
 
@@ -53,7 +54,7 @@ $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
   Совокупность векторов $(\vec{\tau}_1, \vec{\tau}_2, \vec{\tau}_3)$,
   определяемых формулой
   \begin{equation*}
-    \vec{\tau}_i = \frac{\parder[\vec{r}]{q_i}}{\abs{\parder[\vec{r}]{q_i}}},
+    \vec{\tau}_i = \frac{\diffp{\vec{r}}{{q_i}}}{\abs{\diffp{\vec{r}}{{q_i}}}},
       \quad i = 1,2,3
   \end{equation*}
   называют \textit{локальным базисом} криволинейной системы координат в точке
@@ -68,20 +69,20 @@ $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},~\parder[\vec{r}]{q_3}$
 
 \subsection{Условие ортогональности}
 
-Так как векторы $\parder[\vec{r}]{q_1},~\parder[\vec{r}]{q_2},
-~\parder[\vec{r}]{q_3}$ ненулевые, то условия ортогональности локального базиса
+Так как векторы $\diffp{\vec{r}}{{q_1}},~\diffp{\vec{r}}{{q_2}},
+~\diffp{\vec{r}}{{q_3}}$ ненулевые, то условия ортогональности локального базиса
 \begin{equation*}
   \dotprod{\vec{\tau}_i}{\vec{\tau}_j} = 0, \quad i,j = 1,2,3,~i \neq j
 \end{equation*}
 эквивалентны равенствам
 \begin{equation*}
-  \dotprod{\parder[\vec{r}]{q_i}}{\parder[\vec{r}]{q_j}} = 0,
+  \dotprod{\diffp{\vec{r}}{{q_i}}}{\diffp{\vec{r}}{{q_j}}} = 0,
     \quad i,j = 1,2,3,~i \neq j
 \end{equation*}
 или, в координатной форме,
 \begin{equation}
-  \parder[x]{q_i} \parder[x]{q_j} + \parder[y]{q_i} \parder[y]{q_j} +
-    \parder[z]{q_i} \parder[z]{q_j} = 0, \quad i,j = 1,2,3,~i \neq j.
+  \diffp{x}{{q_i}} \diffp{x}{{q_j}} + \diffp{y}{{q_i}} \diffp{y}{{q_j}} +
+    \diffp{z}{{q_i}} \diffp{z}{{q_j}} = 0, \quad i,j = 1,2,3,~i \neq j.
 \end{equation}
 
 \subsection{Список литературы}

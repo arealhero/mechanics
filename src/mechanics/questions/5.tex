@@ -35,23 +35,23 @@ $\mathbb{E}^n$.
 
 Так как
 \begin{equation}
-  \parder[\vec{r}]{q_m} = \parder[x]{q_m} \vec{i} + \parder[y]{q_m} \vec{j} +
-  \parder[z]{q_m} \vec{k},
+  \diffp{\vec{r}}{{q_m}} = \diffp{x}{{q_m}} \vec{i} + \diffp{y}{{q_m}} \vec{j} +
+  \diffp{z}{{q_m}} \vec{k},
 \end{equation}
 то, введя обозначение
 \begin{equation}
-  H_m = \abs{\parder[\vec{r}]{q_m}} = \sqrt{\paren{\parder[x]{q_m}}^2 +
-  \paren{\parder[y]{q_m}}^2 + \paren{\parder[z]{q_m}}^2},
+  H_m = \abs{\diffp{\vec{r}}{{q_m}}} = \sqrt{\paren{\diffp{x}{{q_m}}}^2 +
+  \paren{\diffp{y}{{q_m}}}^2 + \paren{\diffp{z}{{q_m}}}^2},
 \end{equation}
 векторы локального базиса можно представить в виде
 \begin{equation}
   \label{eq:local_basis_vec}
-  \vec{\tau}_m = \frac{1}{H_m} \parder[\vec{r}]{q_m},
+  \vec{\tau}_m = \frac{1}{H_m} \diffp{\vec{r}}{{q_m}},
 \end{equation}
 или, иначе:
 \begin{equation}
   \label{eq:local_basis_vec_alt}
-  \parder[\vec{r}]{q_m} = H_m \vec{\tau}_m.
+  \diffp{\vec{r}}{{q_m}} = H_m \vec{\tau}_m.
 \end{equation}
 
 \begin{definition}
@@ -63,7 +63,7 @@ $\mathbb{E}^n$.
 координат $\vec{q}$ относительно осей декартовой системы координат:
 \begin{equation}
   \cos\angle (\vec{\tau}_m, \vec{i}) = \dotprod{\vec{\tau}_m}{\vec{i}} =
-    \frac{1}{H_m} \parder[x]{q_m}, \quad \dots, \quad m = 1,2,3.
+    \frac{1}{H_m} \diffp{x}{{q_m}}, \quad \dots, \quad m = 1,2,3.
 \end{equation}
 
 \begin{definition}
@@ -91,8 +91,8 @@ $\mathbb{E}^n$.
 Напишем вектор скорости в виде
 \begin{equation}
   \label{eq:velocity_def}
-  \vec{v} = \dot{\vec{r}} = \parder[\vec{r}]{q_1} \dot{q_1} +
-  \parder[\vec{r}]{q_2} \dot{q_2} + \parder[\vec{r}]{q_3} \dot{q_3},
+  \vec{v} = \dot{\vec{r}} = \diffp{\vec{r}}{{q_1}} \dot{q_1} +
+  \diffp{\vec{r}}{{q_2}} \dot{q_2} + \diffp{\vec{r}}{{q_3}} \dot{q_3},
 \end{equation}
 тогда по формулам \ref{eq:local_basis_vec_alt} получим
 \begin{equation*}
