@@ -1,2 +1,141 @@
 \section{Сложное движение точки, основные понятия}
 
+Пусть $(O, \xvec{i}, \xvec{j}, \xvec{k})$ и $(O', \xvec{i}', \xvec{j}',
+\xvec{k}')$
+--- неподвижный и подвижный реперы. Эти реперы и связанные с ними подвижное и
+неподвижное пространства называют также \textit{абсолютным} и
+\textit{относительным} соответственно.
+
+\begin{definition}
+  Движение, скорость и ускорение точки $M$ относительно неподвижного
+  (абсолютного) репера называют \textit{абсолютным}.
+\end{definition}
+
+\begin{definition}
+  Движение, скорость и ускорение точки $M$ относительно подвижного
+  (относительного) репера называют \textit{относительным}.
+\end{definition}
+
+\begin{definition}
+  В момент $t$ точка $M$ совпадает с точкой $M'$ подвижного пространства.
+  Движение, скорость и ускорение точки $M'$ в момент времени $t$ относительно
+  абсолютного репера называют \textit{переносными} для точки $M$ в этот момент.
+\end{definition}
+
+Будем использовать следующие обозначения:
+\begin{itemize}
+  \item $\xvec{r} = \xvec{OM}$ --- абсолютный вектор-радиус;
+  \item $\xvec{v}$ --- абсолютная скорость;
+  \item $\xvec{w}$ --- абсолютное ускорение;
+  \item $\xvec{\rho} = \xvec{O'M}$ --- относительный вектор-радиус;
+  \item $\xvec{v}_r$ --- относительная скорость;
+  \item $\xvec{w}_r$ --- относительное ускорение;
+  \item $\xvec{v}_e$ --- переносная скорость;
+  \item $\xvec{w}_e$ --- переносное ускорение;
+  \item $\xvec{\omega}$ --- угловая скорость подвижного репера относительно
+    неподвижного
+\end{itemize}
+
+Пусть $\xvec{C}$ --- вектор-функция аргумента $t$, причём
+\begin{equation}
+  \xvec{C} = C_x \xvec{i} + C_y \xvec{j} + C_z \xvec{k}.
+\end{equation}
+Тогда
+\begin{equation}
+  \label{eq:vector_function_full_derivative}
+  \xvec[.]{C} = \dot{C_x} \xvec{i} + \dot{C_y} \xvec{j} + \dot{C_z} \xvec{k}
+    + C_x \xvec[.]{i} + C_y \xvec[.]{j} + C_z \xvec[.]{k}.
+\end{equation}
+
+Производные $\xvec[.]{i},~\xvec[.]{j},~\xvec[.]{k}$ зависят от
+пространства, в котором они рассматриваются. В частности, в подвижном
+пространстве они равны нулю.
+
+\begin{theorem}[Формулы Пуассона]
+  Пусть подвижный репер $(O', \xvec{i}', \xvec{j}', \xvec{k}')$, жёстко
+  связанный с твёрдым телом, движется относительно неподвижного репера
+  $(O, \xvec{i}, \xvec{j}, \xvec{k})$ с угловой скоростью $\xvec{\omega}$. Тогда
+  производные подвижных ортов в неподвижном репере вычисляются по формулам:
+  \begin{equation}
+    \label{eq:poisson_formulas}
+    \begin{aligned}
+      \xvec[.]{i}' &= \crossprod{\xvec{\omega}}{\xvec{i}'}, \\
+      \xvec[.]{j}' &= \crossprod{\xvec{\omega}}{\xvec{j}'}, \\
+      \xvec[.]{k}' &= \crossprod{\xvec{\omega}}{\xvec{k}'}.
+    \end{aligned}
+  \end{equation}
+\end{theorem}
+
+\begin{proof}
+  Докажем первую формулу; остальные доказываются аналогично. Введём обозначения
+  \begin{equation*}
+    \xvec{r}_{O'} = \xvec{OO'}, \quad
+    \xvec{v}_{O'} = \xvec[.]{r}_{O'}, \quad
+    \xvec{r}_{O_{i'}} = \xvec{r}_{O'} + \xvec{i}, \quad
+    \xvec{v}_{O_{i'}} = \xvec[.]{r}_{O_{i'}}.
+  \end{equation*}
+
+  Дифференцированием равенства $\xvec{r}_{O_{i'}} = \xvec{r}_{O'} + \xvec{i}'$
+  получаем
+  \begin{equation*}
+    \xvec{v}_{O_{i'}} = \xvec{v}_{O'} + \xvec[.]{i}'.
+  \end{equation*}
+
+  По формуле Эйлера имеем
+  \begin{equation*}
+    \xvec{v}_{O_{i'}} = \xvec{v}_{O'} +
+      \crossprod{\xvec{\omega}}{(\xvec{r}_{O_{i'}} - \xvec{r}_{O'})}
+    = \xvec{v}_{O'} + \crossprod{\xvec{\omega}}{\xvec{i}'},
+  \end{equation*}
+  следовательно,
+  \begin{equation*}
+    \xvec[.]{i}' = \crossprod{\xvec{\omega}}{\xvec{i}'},
+  \end{equation*}
+  что и требовалось доказать.
+\end{proof}
+
+\begin{definition}
+  Производную вектор-функции $\xvec{C}$ в подвижном репере $(O', \xvec{i}',
+  \xvec{j}', \xvec{k}')$ называют \textit{относительной производной
+  вектор-функции $\xvec{C}$} и обозначают $\frac{d' \xvec{C}}{dt}$.
+\end{definition}
+
+\begin{definition}
+  Производную вектор-функции $\xvec{C}$ в неподвижном репере $(O, \xvec{i},
+  \xvec{j}, \xvec{k})$ называют \textit{абсолютной производной вектор-функции
+  $\xvec{C}$} и обозначают $\dt[\xvec{C}]$.
+\end{definition}
+
+\begin{theorem}[Формула относительной производной]
+  Относительная и абсолютная производные вектор-функции связаны равенством:
+  \begin{equation*}
+    \dt[\xvec{C}] = \frac{d' \xvec{C}}{dt} +
+      \crossprod{\xvec{\omega}}{\xvec{C}}.
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  Формулу \ref{eq:vector_function_full_derivative} перепишем в новых
+  обозначениях:
+  \begin{equation*}
+    \dt[\xvec{C}] = \frac{d' \xvec{C}}{dt}
+      + C_x \dt[\xvec{i}] + C_y \dt[\xvec{j}] + C_z \dt[\xvec{k}].
+  \end{equation*}
+  
+  Используя формулы Пуассона \ref{eq:poisson_formulas}, получим
+  \begin{equation*}
+    \begin{aligned}
+      \dt[\xvec{C}] &= \frac{d' \xvec{C}}{dt}
+        + \crossprod
+          {\xvec{\omega}}
+          {\paren{C_x \xvec{i} + C_y \xvec{j} + C_z \xvec{k}}} \\
+      &= \frac{d' \xvec{C}}{dt} + \crossprod{\xvec{\omega}}{\xvec{C}}.
+    \end{aligned}
+  \end{equation*}
+\end{proof}
+
+\subsection{Список литературы}
+\begin{enumerate}
+  \item \cite{lectures}
+\end{enumerate}
+
