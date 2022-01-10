@@ -247,8 +247,47 @@ $w_n = \dfrac{v^2}{\rho}$ --- существенно положительная 
   \cos(\widehat{\xvec{w}, \xvec{n}}) = \frac{w_n}{w}.
 \end{equation}
 
+% TODO
+(\textcolor{red}{TODO:} Переименовать в $\sigma$)
+
+\begin{definition}
+  Пусть $t_0$ --- фиксированный момент времени, а $t$ --- текущий момент, причём
+  $a < t_0 < t < b$. Одно из определений длины дуги $s = s(t)$ траектории от
+  точки $\xvec{r}(t_0)$ до точки $\xvec{r}(t)$ следующее:
+  \begin{equation*}
+    \begin{aligned}
+      s(t) &= \int_{t_0}^{t} \abs{\xvec[.]{r}(t)} \dd{t} \\
+      &= \int_{t_0}^{t} v(t) \dd{t} \\
+      &= \int_{t_0}^{t}
+        \sqrt{(\dot{x}(t))^2 + (\dot{y}(t))^2 + (\dot{z}(t))^2} \dd{t}.
+    \end{aligned}
+  \end{equation*}
+
+  Если
+  \begin{equation*}
+    \begin{aligned}
+      \Delta s &= s(t + \Delta t) - s(t), \\
+      \Delta \xvec{r} &= \xvec{r}(t + \Delta t) - \xvec{r}(t),
+    \end{aligned}
+  \end{equation*}
+  то получим эквивалентное определение:
+  \begin{equation*}
+    \Delta \xvec{r} = (\Delta s) \xvec{\tau} + \xvec{o}(\Delta s), \quad
+      \Delta t \to 0.
+  \end{equation*}
+
+  \textit{Естественной координатой} называют длину дуги $s(t)$, отсчитываемую в
+  сторону движения от некоторой точки.
+
+  Отсюда следует, что
+  \begin{equation*}
+    \xvec{\tau} = \diff{\xvec{r}}{s}.
+  \end{equation*}
+\end{definition}
+
 \subsection{Список литературы}
 \begin{enumerate}
+  \item \cite{lectures}
   \item \cite{lourie}
 \end{enumerate}
 
