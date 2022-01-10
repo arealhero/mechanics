@@ -19,12 +19,12 @@ $\mathbb{E}^n$.
 
 \begin{definition}
   Предположим, что точка этого пространства может быть задана радиус-вектором
-  $\vec{r}$ в какой-либо декартовой системе координат, то есть движение этой
-  точки представлено вектор-функцией $\vec{r} : J \to \mathbb{R}^n$. В этом
+  $\xvec{r}$ в какой-либо декартовой системе координат, то есть движение этой
+  точки представлено вектор-функцией $\xvec{r} : J \to \mathbb{R}^n$. В этом
   случае \textit{скоростью} и \textit{ускорением} точки в этом движении
-  называют соответственно вектор-функции $\vec{v} = \dot{\vec{r}}$ и
-  $\vec{v} = \ddot{\vec{r}}$, а \textit{траекторией} точки называют кривую
-  $\{ \vec{r}(t) \in \mathbb{R}^n \, | \, t \in J \}$.
+  называют соответственно вектор-функции $\xvec{v} = \xvec[.]{r}$ и
+  $\xvec{v} = \xvec[:]{r}$, а \textit{траекторией} точки называют кривую
+  $\{ \xvec{r}(t) \in \mathbb{R}^n \, | \, t \in J \}$.
 \end{definition}
 
 % TODO | FIXME: кривая представлена в виде { r \in R | t \in J }. Необходимо
@@ -35,23 +35,23 @@ $\mathbb{E}^n$.
 
 Так как
 \begin{equation}
-  \diffp{\vec{r}}{{q_m}} = \diffp{x}{{q_m}} \vec{i} + \diffp{y}{{q_m}} \vec{j} +
-  \diffp{z}{{q_m}} \vec{k},
+  \diffp{\xvec{r}}{{q_m}} = \diffp{x}{{q_m}} \xvec{i} + \diffp{y}{{q_m}} \xvec{j} +
+  \diffp{z}{{q_m}} \xvec{k},
 \end{equation}
 то, введя обозначение
 \begin{equation}
-  H_m = \abs{\diffp{\vec{r}}{{q_m}}} = \sqrt{\paren{\diffp{x}{{q_m}}}^2 +
+  H_m = \abs{\diffp{\xvec{r}}{{q_m}}} = \sqrt{\paren{\diffp{x}{{q_m}}}^2 +
   \paren{\diffp{y}{{q_m}}}^2 + \paren{\diffp{z}{{q_m}}}^2},
 \end{equation}
 векторы локального базиса можно представить в виде
 \begin{equation}
   \label{eq:local_basis_vec}
-  \vec{\tau}_m = \frac{1}{H_m} \diffp{\vec{r}}{{q_m}},
+  \xvec{k}_m = \frac{1}{H_m} \diffp{\xvec{r}}{{q_m}},
 \end{equation}
 или, иначе:
 \begin{equation}
   \label{eq:local_basis_vec_alt}
-  \diffp{\vec{r}}{{q_m}} = H_m \vec{\tau}_m.
+  \diffp{\xvec{r}}{{q_m}} = H_m \xvec{k}_m.
 \end{equation}
 
 \begin{definition}
@@ -59,29 +59,59 @@ $\mathbb{E}^n$.
   \textit{коэффициентами Ламе}.
 \end{definition}
 
-Выразим направляющие косинусы осей локального базиса криволинейной системы
-координат $\vec{q}$ относительно осей декартовой системы координат:
-\begin{equation}
-  \cos\angle (\vec{\tau}_m, \vec{i}) = \dotprod{\vec{\tau}_m}{\vec{i}} =
-    \frac{1}{H_m} \diffp{x}{{q_m}}, \quad \dots, \quad m = 1,2,3.
-\end{equation}
+Пользуясь формулой \ref{eq:local_basis_vec}, легко найти косинусы углов
+криволинейной системы координат с осями декартовых координат. Например,
+\begin{equation*}
+  \cos(\widehat{\xvec{k}_i, [x_1]}) = \dotprod{\xvec{k}_i}{\xvec{e}_1} =
+    \frac{1}{H_i} \dotprod{\diffp{\xvec{r}}{{q_i}}}{\xvec{e}_1} =
+    \frac{1}{H_i} \diffp{x_1}{{q_i}}
+\end{equation*}
+и, вообще,
+\begin{equation*}
+  \cos(\widehat{\xvec{k}_i, [x_j]}) = \frac{1}{H_i} \diffp{x_j}{{q_i}}.
+\end{equation*}
+
+Составим таблицу направляющих косинусов:
+\begin{equation*}
+  \setlength{\extrarowheight}{-2pt}
+  \renewcommand{\arraystretch}{4}
+  \begin{array}{|*4{>{\displaystyle}c|}}
+    \hline
+    & [q_1] & [q_2] & [q_3] \\
+    \hline
+    {[x_1]}
+      & \frac{1}{H_1} \diffp{x_1}{{q_1}}
+      & \frac{1}{H_2} \diffp{x_1}{{q_2}}
+      & \frac{1}{H_3} \diffp{x_1}{{q_3}} \\
+    {[x_2]}
+      & \frac{1}{H_1} \diffp{x_2}{{q_1}}
+      & \frac{1}{H_2} \diffp{x_2}{{q_2}}
+      & \frac{1}{H_3} \diffp{x_2}{{q_3}} \\
+    {[x_3]}
+      & \frac{1}{H_1} \diffp{x_3}{{q_1}}
+      & \frac{1}{H_2} \diffp{x_3}{{q_2}}
+      & \frac{1}{H_3} \diffp{x_3}{{q_3}} \\
+    \hline
+  \end{array}
+  \renewcommand{\arraystretch}{1}
+\end{equation*}
 
 \begin{definition}
-  \textit{Движением точки в криволинейных координатах $\vec{q}$} называют
+  \textit{Движением точки в криволинейных координатах $\xvec{q}$} называют
   дважды непрерывно дифференцируемую на промежутке $J \subset \mathbb{R}$
-  вектор-функцию $\vec{q}(t)$.
+  вектор-функцию $\xvec{q}(t)$.
 \end{definition}
 
 \begin{definition}
-  Функции $\dot{\vec{q}}$ и $\ddot{\vec{q}}$ называют соответственно
+  Функции $\xvec[.]{q}$ и $\xvec[:]{q}$ называют соответственно
   \textit{обобщённой скоростью} и \textit{обобщённым ускорением точки в
-  движении $\vec{q}(t)$}.
+  движении $\xvec{q}(t)$}.
 \end{definition}
 
 \begin{definition}
   Кривую
   \begin{equation*}
-    \Gamma = \{ \vec{q}(t) \in \mathbb{R}^3 \, | \, t \in J \}
+    \Gamma = \{ \xvec{q}(t) \in \mathbb{R}^3 \, | \, t \in J \}
   \end{equation*}
   называют \textit{траекторией точки в криволинейных координатах}.
 \end{definition}
@@ -91,13 +121,13 @@ $\mathbb{E}^n$.
 Напишем вектор скорости в виде
 \begin{equation}
   \label{eq:velocity_def}
-  \vec{v} = \dot{\vec{r}} = \diffp{\vec{r}}{{q_1}} \dot{q_1} +
-  \diffp{\vec{r}}{{q_2}} \dot{q_2} + \diffp{\vec{r}}{{q_3}} \dot{q_3},
+  \xvec{v} = \xvec[.]{r} = \diffp{\xvec{r}}{{q_1}} \dot{q_1} +
+  \diffp{\xvec{r}}{{q_2}} \dot{q_2} + \diffp{\xvec{r}}{{q_3}} \dot{q_3},
 \end{equation}
 тогда по формулам \ref{eq:local_basis_vec_alt} получим
 \begin{equation*}
-  \vec{v} = H_1 \dot{q}_1 \vec{\tau}_1 + H_2 \dot{q}_2 \vec{\tau}_2 + H_3
-  \dot{q}_3 \vec{\tau}_3.
+  \xvec{v} = H_1 \dot{q}_1 \xvec{k}_1 + H_2 \dot{q}_2 \xvec{k}_2 + H_3
+  \dot{q}_3 \xvec{k}_3.
 \end{equation*}
 Это равенство можно рассматривать как разложение вектора скорости по единичным
 векторам осей криволинейных координат; для проекций скорости на координатные
@@ -112,7 +142,8 @@ $\mathbb{E}^n$.
   \begin{gathered}
     v = \sqrt{\paren{H_1 \dot{q_1}}^2 + \paren{H_2 \dot{q_2}}^2 + \paren{H_3
       \dot{q_3}}^2}, \\
-    \cos\angle (\vec{v}, \vec{\tau}_m) = H_m \dot{q}_m v^{-1}, \quad m = 1,2,3.
+    \cos\angle (\xvec{v}, \xvec{k}_m) = H_m \dot{q}_m v^{-1},
+      \quad m = 1,2,3.
   \end{gathered}
 \end{equation}
 
