@@ -3,57 +3,57 @@
 
 Для определения проекций ускорения представим их в виде
 \begin{equation*}
-  w_{q_m} = \dotprod{\vec{w}}{\vec{\tau}_m} =
-    \dotprod{\dot{\vec{v}}}{\frac{1}{H_m}}{\diffp{\vec{r}}{{q_m}}},
+  w_{q_m} = \dotprod{\xvec{w}}{\xvec{k}_m} =
+    \dotprod{\dot{\xvec{v}}}{\frac{1}{H_m}}{\diffp{\xvec{r}}{{q_m}}},
 \end{equation*}
 откуда
 \begin{equation}
   \label{eq:accel_proj_temp}
-  H_m w_{q_m} = \dotprod{\dot{\vec{v}}}{\diffp{\vec{r}}{{q_m}}} =
-    \dt \paren{\dotprod{\vec{v}}{\diffp{\vec{r}}{{q_m}}}}
-    - \dotprod{\vec{v}}{\dt \diffp{\vec{r}}{{q_m}}}.
+  H_m w_{q_m} = \dotprod{\dot{\xvec{v}}}{\diffp{\xvec{r}}{{q_m}}} =
+    \dt \paren{\dotprod{\xvec{v}}{\diffp{\xvec{r}}{{q_m}}}}
+    - \dotprod{\xvec{v}}{\dt \diffp{\xvec{r}}{{q_m}}}.
 \end{equation}
 Из \autoref{eq:velocity_def} непосредственно следует
 \begin{equation}
   \label{eq:accel_dr}
-  \diffp{\vec{v}}{{\dot{q}_m}} = \diffp{\vec{r}}{{q_m}}.
+  \diffp{\xvec{v}}{{\dot{q}_m}} = \diffp{\xvec{r}}{{q_m}}.
 \end{equation}
 Кроме того, по определению полной производной
 \begin{equation*}
-  \dt \diffp{\vec{r}}{{q_m}} = \diffp{\vec{r}}{{q_1}{q_m}} \dot{q}_1 +
-    \diffp{\vec{r}}{{q_2}{q_m}} \dot{q}_2 +
-    \diffp{\vec{r}}{{q_3}{q_m}} \dot{q}_3;
+  \dt \diffp{\xvec{r}}{{q_m}} = \diffp{\xvec{r}}{{q_1}{q_m}} \dot{q}_1 +
+    \diffp{\xvec{r}}{{q_2}{q_m}} \dot{q}_2 +
+    \diffp{\xvec{r}}{{q_3}{q_m}} \dot{q}_3;
 \end{equation*}
 но это же выражение получим, если возьмём от обеих частей
 \autoref{eq:velocity_def} частную производную по $q_m$. Действительно, так как
 $\dot{q}_1,~\dot{q}_2,~\dot{q}_3$ зависят только от времени, а не от
 $q_1,~q_2,~q_3$, то
 \begin{equation*}
-  \diffp{\vec{v}}{{q_m}} = \diffp{\vec{r}}{{q_m}{q_1}} \dot{q}_1 +
-    \diffp{\vec{r}}{{q_m}{q_2}} \dot{q}_2 + \diffp{\vec{r}}{{q_m}{q_3}}
+  \diffp{\xvec{v}}{{q_m}} = \diffp{\xvec{r}}{{q_m}{q_1}} \dot{q}_1 +
+    \diffp{\xvec{r}}{{q_m}{q_2}} \dot{q}_2 + \diffp{\xvec{r}}{{q_m}{q_3}}
     \dot{q}_3;
 \end{equation*}
 таким образом, имеем
 \begin{equation}
   \label{eq:accel_dv}
-  \dt \diffp{\vec{r}}{{q_m}} = \diffp{\vec{v}}{{q_m}}.
+  \dt \diffp{\xvec{r}}{{q_m}} = \diffp{\xvec{v}}{{q_m}}.
 \end{equation}
-Подставляя значения $\diffp{\vec{r}}{{q_m}}$ по \autoref{eq:accel_dr} и
-$\dt \diffp{\vec{r}}{{q_m}}$ по \autoref{eq:accel_dv} в равенство
-\ref{eq:accel_proj_temp}, получим
+Подставляя значения ${\displaystyle \diffp{\xvec{r}}{{q_m}}}$ по
+\autoref{eq:accel_dr} и ${\displaystyle \dt \diffp{\xvec{r}}{{q_m}}}$ по
+\autoref{eq:accel_dv} в равенство \ref{eq:accel_proj_temp}, получим
 \begin{equation}
   \label{eq:accel_proj_temp2}
-  H_m w_{q_m} = \dt \paren{\dotprod{\vec{v}}{\diffp{\vec{v}}{{\dot{q}_m}}}} -
-    \dotprod{\vec{v}}{\diffp{\vec{v}}{{q_m}}}.
+  H_m w_{q_m} = \dt \paren{\dotprod{\xvec{v}}{\diffp{\xvec{v}}{{\dot{q}_m}}}} -
+    \dotprod{\xvec{v}}{\diffp{\xvec{v}}{{q_m}}}.
 \end{equation}
 Замечая, что
 \begin{equation*}
   \begin{gathered}
-    \dotprod{\vec{v}}{\diffp{\vec{v}}{{\dot{q}_m}}} =
-      \diffp{}{{\dot{q}_m}} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+    \dotprod{\xvec{v}}{\diffp{\xvec{v}}{{\dot{q}_m}}} =
+      \diffp{}{{\dot{q}_m}} \frac{\dotprod{\xvec{v}}{\xvec{v}}}{2} =
       \diffp{}{{\dot{q}_m}} \frac{v^2}{2}, \\
-    \dotprod{\vec{v}}{\diffp{\vec{v}}{{q_m}}} =
-      \diffp{}{{q_m}} \frac{\dotprod{\vec{v}}{\vec{v}}}{2} =
+    \dotprod{\xvec{v}}{\diffp{\xvec{v}}{{q_m}}} =
+      \diffp{}{{q_m}} \frac{\dotprod{\xvec{v}}{\xvec{v}}}{2} =
       \diffp{}{{q_m}} \frac{v^2}{2},
   \end{gathered}
 \end{equation*}
