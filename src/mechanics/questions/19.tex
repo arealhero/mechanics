@@ -1,7 +1,12 @@
 \section{Задание движения твёрдого тела через углы Эйлера}
 
-% TODO
-(\textcolor{red}{TODO:} рис. 180 стр. 263)
+\begin{figure}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\includegraphics{src/mechanics/pictures/19_1.jpg}}
+
+  \caption{}
+  \label{fig:19_1}
+\end{figure}
 
 Соединим жёстко с вращающимся телом подвижную систему координат $Ox'y'z'$ и
 будем рассматривать вращение этой системы по отношению к неподвижной системе
@@ -11,11 +16,11 @@ $Oxyz$. Введём таблицу косинусов углов между о�
     \hline
     & x & y & z \\
     \hline
-    x' & \alpha_{11} & \alpha_{12} & \alpha_{13} \\
+    x' & p_{11} & p_{12} & p_{13} \\
     \hline
-    y' & \alpha_{21} & \alpha_{22} & \alpha_{23} \\
+    y' & p_{21} & p_{22} & p_{23} \\
     \hline
-    z' & \alpha_{31} & \alpha_{32} & \alpha_{33} \\
+    z' & p_{31} & p_{32} & p_{33} \\
     \hline
   \end{array}
 \end{equation*}
@@ -34,9 +39,9 @@ $Oxyz$. Введём таблицу косинусов углов между о�
     &=
     \left(
     \begin{array}{c c c}
-      \alpha_{11} & \alpha_{12} & \alpha_{13} \\
-      \alpha_{21} & \alpha_{22} & \alpha_{23} \\
-      \alpha_{31} & \alpha_{32} & \alpha_{33}
+      p_{11} & p_{12} & p_{13} \\
+      p_{21} & p_{22} & p_{23} \\
+      p_{31} & p_{32} & p_{33}
     \end{array}
     \right)
     \left(
@@ -56,9 +61,9 @@ $Oxyz$. Введём таблицу косинусов углов между о�
     &=
     \left(
     \begin{array}{c c c}
-      \alpha_{11} & \alpha_{21} & \alpha_{31} \\
-      \alpha_{12} & \alpha_{22} & \alpha_{32} \\
-      \alpha_{13} & \alpha_{23} & \alpha_{33}
+      p_{11} & p_{21} & p_{31} \\
+      p_{12} & p_{22} & p_{32} \\
+      p_{13} & p_{23} & p_{33}
     \end{array}
     \right)
     \left(
@@ -90,8 +95,13 @@ $xOy$ линией узлов с неподвижной осью $Ox$; отсч�
 $\varphi$ --- расположен в плоскости $x'Oy'$, причём отсчитывается от линии
 узлов $ON$ до оси $Ox'$ в положительном направлении.
 
-% TODO
-(\textcolor{red}{TODO:} рис. 181 стр 264)
+\begin{figure}[H]
+  \centering
+  \resizebox{\linewidth}{!}{\includegraphics{src/mechanics/pictures/19_2.jpg}}
+
+  \caption{}
+  \label{fig:19_2}
+\end{figure}
 
 Для установления зависимостей между косинусами углов осей координат и эйлеровыми
 углами применим следующий приём. Введём, кроме единичных векторов осей координат
@@ -127,7 +137,7 @@ $Ox'y'z'$, а следовательно, и с системой $Oxyz$. Лег�
 найдём
 \begin{equation*}
   \begin{aligned}
-    \alpha_{11} &= \dotprod{\vec{i}}{\pvec{i}} \\
+    p_{11} &= \dotprod{\vec{i}}{\pvec{i}} \\
       &= \dotprod{
         \paren{\vec{n} \cos\psi - \vec{n}_1 \sin\psi}
       }{
@@ -150,7 +160,7 @@ $Ox'y'z'$, а следовательно, и с системой $Oxyz$. Лег�
 \end{equation*}
 откуда
 \begin{equation*}
-  \alpha_{11} = \cos\psi \cos\varphi - \sin\psi \sin\varphi \cos\theta.
+  p_{11} = \cos\psi \cos\varphi - \sin\psi \sin\varphi \cos\theta.
 \end{equation*}
 Аналогично получим остальные косинусы.
 
@@ -158,23 +168,23 @@ $Ox'y'z'$, а следовательно, и с системой $Oxyz$. Лег�
 \begin{equation}
   \label{eq:euler_cos}
   \begin{aligned}
-    \alpha_{11} &= \cos(\widehat{x, x'})
+    p_{11} &= \cos(\widehat{x, x'})
       = \phantom{-} \cos\psi \cos\varphi - \sin\psi \sin\varphi \cos\theta, \\
-    \alpha_{21} &= \cos(\widehat{x, y'})
+    p_{21} &= \cos(\widehat{x, y'})
       = -\cos\psi \sin\varphi - \sin\psi \cos\varphi \cos\theta, \\
-    \alpha_{31} &= \cos(\widehat{x, z'})
+    p_{31} &= \cos(\widehat{x, z'})
       = \phantom{-} \sin\psi \sin\theta, \\
-    \alpha_{12} &= \cos(\widehat{y, x'})
+    p_{12} &= \cos(\widehat{y, x'})
       = \phantom{-} \sin\psi \cos\varphi + \cos\psi \sin\varphi \cos\theta, \\
-    \alpha_{22} &= \cos(\widehat{y, y'})
+    p_{22} &= \cos(\widehat{y, y'})
       = -\sin\psi \sin\varphi + \cos\psi \cos\varphi \cos\theta, \\
-    \alpha_{32} &= \cos(\widehat{y, z'})
+    p_{32} &= \cos(\widehat{y, z'})
       = -\cos\psi \sin\theta, \\
-    \alpha_{13} &= \cos(\widehat{z, x'})
+    p_{13} &= \cos(\widehat{z, x'})
       = \phantom{-} \sin\varphi \sin\theta, \\
-    \alpha_{23} &= \cos(\widehat{z, y'})
+    p_{23} &= \cos(\widehat{z, y'})
       = \phantom{-} \cos\varphi \sin\theta, \\
-    \alpha_{33} &= \cos(\widehat{z, z'})
+    p_{33} &= \cos(\widehat{z, z'})
       = \phantom{-} \cos\theta.
   \end{aligned}
 \end{equation}
@@ -185,9 +195,9 @@ $Ox'y'z'$, а следовательно, и с системой $Oxyz$. Лег�
     \begin{aligned}
       P &= \left(
         \begin{array}{c c c}
-          \alpha_{11} & \alpha_{21} & \alpha_{31} \\
-          \alpha_{12} & \alpha_{22} & \alpha_{32} \\
-          \alpha_{13} & \alpha_{23} & \alpha_{33}
+          p_{11} & p_{21} & p_{31} \\
+          p_{12} & p_{22} & p_{32} \\
+          p_{13} & p_{23} & p_{33}
         \end{array}
         \right), \\
       P_1(t) &= \left(
