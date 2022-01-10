@@ -15,7 +15,7 @@ bib: tex
 	pdflatex $(PDFLATEX_FLAGS) src/mechanics/mechanics.tex
 
 build:
-	mkdir -p build
+	mkdir -p build/src/mechanics/questions/
 
 out:
 	mkdir -p out

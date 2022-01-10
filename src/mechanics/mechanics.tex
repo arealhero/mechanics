@@ -51,8 +51,7 @@
 \pagebreak
 
 \foreach \i in {1,2,...,28}{
-  \import{src/mechanics/questions/}{\i.tex}
-  \pagebreak
+  \include{src/mechanics/questions/\i.tex}
 }
 
 \printbibliography[heading=bibintoc]
