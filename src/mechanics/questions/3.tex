@@ -16,27 +16,31 @@
 
 \begin{definition}
   \textit{Криволинейной системой координат} в области $D \subset \mathbb{R}^n$
-  называют систему гладких функций $(x_1 (y_1, \dots, y_n), \dots,
-  x_n (y_1, \dots, y_n))$, задающих взаимно однозначное отображение области $D$
-  на некоторую область $G \subset \mathbb{R}^n$, причём якобиан
+  называют систему гладких функций
+  \begin{equation*}
+    q_i : D \to \mathbb{R}, \quad i \in [1:n],
+  \end{equation*}
+  задающих взаимно однозначное отображение
+  \begin{equation*}
+    f : D \to G \subset \mathbb{R}^n,
+  \end{equation*}
+  причём якобиан
   \begin{equation}
-    J(y) = \det
+    J(x) = \frac{D(q_1, \dots, q_n)}{D(x_1, \dots, x_n)}(x) = \det
     \left(
-    \begin{array}{ccc}
-      \frac{\partial x_1}{\partial y_1}(y) & \dots &
-        \frac{\partial x_n}{\partial y_1}(y) \\
+    \begin{array}{c c c}
+      \diffp{q_1}{{x_1}}(x) & \dots & \diffp{q_n}{{x_1}}(x) \\
       \vdots & \ddots & \vdots \\
-      \frac{\partial x_1}{\partial y_n}(y) & \dots &
-        \frac{\partial x_n}{\partial y_n}(y)
+      \diffp{q_1}{{x_n}}(x) & \dots & \diffp{q_n}{{x_n}}(x)
     \end{array}
     \right)
   \end{equation}
-  отличен от нуля во всех точках области $D$.
+  отличен от нуля во всех точках области $x \in D$.
 \end{definition}
 
 \begin{remark}
-  Отличие от нуля якобиана $J(y)$ при всех $y \in D$ гарантирует, что обратное
-  к $f(y)$ отображение $f^{-1}(x)$ также является гладким.
+  Отличие от нуля якобиана $J(x)$ при всех $x \in D$ гарантирует, что обратное
+  к $f(x)$ отображение $f^{-1}(q)$ также является гладким.
 \end{remark}
 
 \begin{definition}
@@ -45,7 +49,7 @@
 \end{definition}
 
 Таким образом, криволинейная система координат задаётся двумя гладкими взаимно
-однозначными отображениями $f(y)$ и $f^{-1}(x)$, устанавливающими гомеоморфизм
+однозначными отображениями $f(x)$ и $f^{-1}(q)$, устанавливающими гомеоморфизм
 между множествами $D$ и $G$.
 
 \begin{definition}
@@ -60,13 +64,12 @@
 
 \subsection{Замена координат}
 
-Пусть $y \in \mathbb{R}^n$, и в области $D \subset \mathbb{R}^n$ две системы
-координат $x(y) = (x_1(y), \dots, x_n(y))$ и $z(y) = (z_1(y), \dots, z_n(y))$
-заданы отображениями $f : D \to G_1 \subset \mathbb{R}^n$ и
+Пусть в области $D \subset \mathbb{R}^n$ две системы координат $q_1(x)$ и
+$q_2(x)$ заданы отображениями $f : D \to G_1 \subset \mathbb{R}^n$ и
 $g : D \to G_2 \subset \mathbb{R}^n$.
 
 \begin{definition}
-  \textit{Заменой координат} $x$ на $z$ называется отображение
+  \textit{Заменой координат} $q_1$ на $q_2$ называется отображение
   $\psi : G_1 \to G_2$, задаваемое формулой $\psi = g \circ f^{-1}$.
 \end{definition}
 
@@ -79,31 +82,28 @@ $g : D \to G_2 \subset \mathbb{R}^n$.
   \centering
   \begin{tikzpicture}
     \draw (0,0) rectangle (2,4);
-    \draw (1,4) node[rectangle,
-    label=above:{$\mathbb{R}_1^n(x_1,\dots,x_n)$}]{};
+    \draw (1,4) node[rectangle]{};
 
-    \draw[fill=gray!45] (1,2) node[rectangle]{$D_1$}
+    \draw[fill=gray!45] (1,2) node[rectangle]{$G_1$}
     ellipse (0.75 and 1.5);
 
     \draw (3,1.5) rectangle (5,2.5);
-    \draw (4,2.5) node[rectangle,
-    label=above:{$\mathbb{R}^n(y_1,\dots,y_n)$}]{};
+    \draw (4,2.5) node[rectangle]{};
 
     \draw[fill=gray!45] (4,2) node[rectangle]{$D$}
     ellipse (0.75 and 0.3);
 
     \draw (6,0) rectangle (8,4);
-    \draw (7,4) node[rectangle,
-    label=above:{$\mathbb{R}_2^n(z_1,\dots,z_n)$}]{};
+    \draw (7,4) node[rectangle]{};
 
-    \draw[fill=gray!45] (7,2) node[rectangle]{$D_2$}
+    \draw[fill=gray!45] (7,2) node[rectangle]{$G_2$}
     ellipse (0.75 and 1.5);
 
     \draw [stealth-,out=15,in=165] (1,3.25) to node[sloped,above]
-    {$\psi_{zx} = f \circ g^{-1}$} (7,3.25);
+    {$\psi^{-1} = f \circ g^{-1}$} (7,3.25);
 
     \draw [-stealth,out=-15,in=-165] (1,0.75) to node[sloped,below]
-    {$\psi_{xz} = g \circ f^{-1}$} (7,0.75);
+    {$\psi = g \circ f^{-1}$} (7,0.75);
 
     \draw [stealth-,out=15,in=165] (1.5,2.15) to node[sloped,above]
     {$f$} (3.5,2.15);
